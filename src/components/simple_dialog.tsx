@@ -9,8 +9,6 @@ import {
   styled,
 } from '@mui/material';
 
-import {DatasetUrl} from '../../lib/content';
-
 export type DialogOnClose = (
   event: {},
   reason: 'backdropClick' | 'escapeKeyDown'
@@ -19,7 +17,11 @@ export type DialogOnClose = (
 interface SimpleDialogProps {
   open: boolean;
   onClose: DialogOnClose;
-  urls: DatasetUrl[];
+  items: {
+    primaryText: string;
+    secondaryText?: string;
+    linkUrl: string;
+  }[];
 }
 
 const StyledDialog = styled(Dialog)({
@@ -37,17 +39,21 @@ const StyledTitle = styled(DialogTitle)(({theme}) => ({
   color: theme.palette.primary.contrastText,
 }));
 
-export default function SimpleDialog({open, onClose, urls}: SimpleDialogProps) {
+export default function SimpleDialog({
+  open,
+  onClose,
+  items,
+}: SimpleDialogProps) {
   return (
     <StyledDialog open={open} onClose={onClose}>
       <StyledTitle>Select dataset variant</StyledTitle>
       <List>
-        {urls.map((u, i) => (
-          <StyledListItem key={i}>
-            <a href={u.url} target="_blank" rel="noreferrer">
+        {items.map((i, ind) => (
+          <StyledListItem key={ind}>
+            <a href={i.linkUrl} target="_blank" rel="noreferrer">
               <ListItemText
-                primary={u.name}
-                secondary={u.size ? u.size : ' '}
+                primary={i.primaryText}
+                secondary={i.secondaryText ? i.secondaryText : ' '}
               />
             </a>
           </StyledListItem>
