@@ -6,7 +6,7 @@ import {AppBar, Tab, Tabs, styled} from '@mui/material';
 
 import {mq} from '../styles/shared';
 
-import QcrLogo from '!@svgr/webpack!/public/qcr_logo_light.svg';
+import QcrLogo from '../assets/QcrLogoLight.js';
 
 const StyledBar = styled(AppBar)({
   alignItems: 'center',

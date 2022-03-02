@@ -9,6 +9,6 @@
     "strict": true,
     "target": "es5"
   },
-  "include": ["src"],
+  "include": ["sites-shared.d.ts", "src"],
   "exclude": ["node_modules"]
 }
