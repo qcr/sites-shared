@@ -4,6 +4,7 @@
   "description": "Shared development tools for QCR-branded websites",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/qcr/sites-shared/issues"
   },
-  "homepage": "https://github.com/qcr/sites-shared#readme"
+  "homepage": "https://github.com/qcr/sites-shared#readme",
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  }
 }
