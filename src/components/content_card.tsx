@@ -5,15 +5,17 @@ import {Card, CardActionArea, Typography, styled} from '@mui/material';
 
 import ResponsiveMedia from '../components/responsive_media';
 
-import styles from '../styles/card.module.scss';
-
-import {Content} from 'lib/content';
-
 const ELEVATION_DEFAULT = 2;
 const ELEVATION_HIGHLIGHT = 8;
 
 interface ContentCardProps {
-  cardData: Content;
+  linkUrl: string;
+  mediaFit?: string;
+  mediaPosition?: string;
+  mediaUrls?: string[];
+  primaryText: string;
+  secondaryText?: string;
+  secondaryTransform: 'capitalize' | 'lowercase' | 'none';
 }
 
 const CARD_HEIGHT = '265px';
@@ -44,7 +46,7 @@ const StyledFooter = styled('div')(({theme}) => ({
   width: '100%',
 }));
 
-const StyledImage = styled(ResponsiveMedia)({
+const StyledMedia = styled(ResponsiveMedia)({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
@@ -63,12 +65,6 @@ const StyledInfo = styled(Typography)({
   minHeight: '1.5em',
   opacity: 0.7,
   textAlign: 'right',
-  '&.size': {
-    textTransform: 'capitalize',
-  },
-  '&.url': {
-    textTransform: 'lowercase',
-  },
 });
 
 const StyledName = styled('div')({
@@ -86,7 +82,15 @@ const StyledName = styled('div')({
   },
 });
 
-export default function ContentCard({cardData}: ContentCardProps) {
+export default function ContentCard({
+  linkUrl,
+  mediaFit,
+  mediaPosition,
+  mediaUrls,
+  primaryText,
+  secondaryText,
+  secondaryTransform = 'none',
+}: ContentCardProps) {
   const [elevation, setElevation] = useState(ELEVATION_DEFAULT);
   return (
     <StyledCard
@@ -95,33 +99,27 @@ export default function ContentCard({cardData}: ContentCardProps) {
       onMouseOut={() => setElevation(ELEVATION_DEFAULT)}
       square={true}
     >
-      <Link href={`/${cardData.type}/${cardData.id}`} passHref>
+      <Link href={linkUrl} passHref>
         <StyledClickable>
-          <StyledImage
+          <StyledMedia
             altText=""
-            images={cardData._images ? cardData._images : []}
+            images={mediaUrls ? mediaUrls : []}
             style={
               {
-                objectPosition: cardData.image_position,
-                objectFit: cardData.image_fit,
+                objectPosition: mediaPosition,
+                objectFit: mediaFit,
               } as React.CSSProperties
             }
           />
           <StyledFooter>
             <StyledInfo
               variant="body2"
-              className={`${cardData.type === 'code' ? 'url' : 'size'}`}
+              style={{textTransform: secondaryTransform}}
             >
-              {cardData.type === 'dataset'
-                ? cardData.size
-                  ? cardData.size
-                  : ''
-                : cardData.type === 'code'
-                ? cardData.url.replace(/.*\/([^/]*\/[^/]*)$/, '$1')
-                : 'Collection'}
+              {secondaryText}
             </StyledInfo>
             <StyledName>
-              <Typography variant="body1">{cardData.name}</Typography>
+              <Typography variant="body1">{primaryText}</Typography>
             </StyledName>
           </StyledFooter>
         </StyledClickable>
