@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Shared development tools for QCR-branded websites",
   "private": true,
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
