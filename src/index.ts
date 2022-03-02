@@ -1,6 +1,9 @@
 export {default as BottomBar} from './components/bottom_bar';
 export {default as CardCarousel} from './components/card_carousel';
-export {default as ContentCard} from './components/content_card';
+export {
+  default as ContentCard,
+  ContentCardProps,
+} from './components/content_card';
 export {default as FocusButton} from './components/focus_button';
 export {default as Layout} from './components/layout';
 export {default as ResponsiveMedia} from './components/responsive_media';
