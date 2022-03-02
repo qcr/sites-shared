@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/qcr/sites-shared#readme",
   "devDependencies": {
+    "eslint": "^8.10.0",
+    "prettier": "^2.5.1",
     "typescript": "^4.6.2"
   }
 }
