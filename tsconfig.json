@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "declaration": true,
+    "allowJs": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "module": "ES2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./lib",
+    "skipLibCheck": true,
     "strict": true,
-    "target": "es5"
+    "target": "ES2015"
   },
   "include": ["sites-shared.d.ts", "src"],
   "exclude": ["node_modules"]
