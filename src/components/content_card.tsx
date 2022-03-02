@@ -8,7 +8,7 @@ import ResponsiveMedia from '../components/responsive_media';
 const ELEVATION_DEFAULT = 2;
 const ELEVATION_HIGHLIGHT = 8;
 
-interface ContentCardProps {
+export interface ContentCardProps {
   linkUrl: string;
   mediaFit?: string;
   mediaPosition?: string;

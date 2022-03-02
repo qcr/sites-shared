@@ -3,12 +3,10 @@ import Carousel from 'react-multi-carousel';
 
 import {styled} from '@mui/material';
 
-import Card from './card';
-
-import {Content} from '../../lib/content';
+import ContentCard, {ContentCardProps} from './content_card';
 
 interface CardCarouselProps {
-  cardsData: Content[];
+  cardsData: ContentCardProps[];
 }
 
 const StyledCarousel = styled(Carousel)(({theme}) => ({
@@ -43,7 +41,7 @@ export default function CardCarousel({cardsData}: CardCarouselProps) {
     >
       {Object.values(cardsData).map((c, i) => (
         <StyledItem key={i}>
-          <Card cardData={c} />
+          <ContentCard {...c} />
         </StyledItem>
       ))}
     </StyledCarousel>
