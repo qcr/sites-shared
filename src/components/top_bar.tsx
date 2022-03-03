@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-import {AppBar, Tab, Tabs, styled} from '@mui/material';
+import {AppBar, Tab, Tabs, styled, Typography} from '@mui/material';
 
 import {mq} from '../styles/components';
 
@@ -34,9 +34,13 @@ const StyledLogo = styled(QcrLogo)({
 });
 
 const StyledTab = styled(Tab)(({theme}) => ({
-  color: 'white',
+  color: theme.palette.primary.contrastText,
   opacity: 1.0,
   textTransform: 'capitalize',
+}));
+
+const StyledTitle = styled(Typography)(({theme}) => ({
+  color: theme.palette.primary.contrastText,
 }));
 
 export default function TopBar({title, tabs, selected = false}: TopBarProps) {
@@ -47,6 +51,7 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
           <StyledLogo />
         </a>
       </Link>
+      {title && <StyledTitle>{title}</StyledTitle>}
       {tabs && (
         <Tabs
           value={selected}
