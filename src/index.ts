@@ -11,3 +11,4 @@ export {default as SimpleDialog} from './components/simple_dialog';
 export {default as TopBar} from './components/top_bar';
 
 export * from './styles/components';
+export * from './styles/themes';
