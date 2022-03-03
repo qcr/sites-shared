@@ -1,4 +1,4 @@
-import {createTheme} from '@mui/material';
+import {createTheme} from '@mui/material/styles';
 
 export const QcrTheme = createTheme({
   palette: {primary: {main: '#00407a'}},
