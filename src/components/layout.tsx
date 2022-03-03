@@ -4,7 +4,7 @@ import {styled} from '@mui/material';
 
 import BottomBar from './bottom_bar';
 import TopBar from './top_bar';
-import {mq} from '../styles/shared';
+import {mq} from '../styles/components';
 
 interface LayoutProps {
   children: React.ReactNode[];

@@ -4,7 +4,7 @@ import React from 'react';
 
 import {AppBar, Tab, Tabs, styled} from '@mui/material';
 
-import {mq} from '../styles/shared';
+import {mq} from '../styles/components';
 
 import QcrLogo from '../assets/QcrLogoLight.js';
 
