@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "npm run build_assets && tsc",
+    "build": "npm run build_assets && tsc && cp src/styles/*.css lib/styles/",
     "build_assets": "npx @svgr/cli --no-index --out-dir src/assets/ assets/",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
