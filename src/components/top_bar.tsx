@@ -18,7 +18,7 @@ interface TopBarProps {
 
 const StyledBar = styled(AppBar)({
   alignItems: 'center',
-  justifyContent: 'space-around',
+  justifyContent: 'space-between',
   [mq('tablet')]: {
     flexDirection: 'row',
   },
@@ -31,6 +31,10 @@ const StyledLogo = styled(QcrLogo)({
   [mq('tablet')]: {
     width: '150px',
   },
+});
+
+const StyledRow = styled('div')({
+  width: '90%',
 });
 
 const StyledTab = styled(Tab)(({theme}) => ({
@@ -46,28 +50,32 @@ const StyledTitle = styled(Typography)(({theme}) => ({
 export default function TopBar({title, tabs, selected = false}: TopBarProps) {
   return (
     <StyledBar>
-      <Link href="/" passHref>
-        <a>
-          <StyledLogo />
-        </a>
-      </Link>
-      {title && <StyledTitle>{title}</StyledTitle>}
-      {tabs && (
-        <Tabs
-          value={selected}
-          TabIndicatorProps={{
-            style: {
-              backgroundColor: 'white',
-            },
-          }}
-        >
-          {tabs.map((t, i) => (
-            <Link key={i} href={t.target} passHref>
-              <StyledTab label={t.text} />
-            </Link>
-          ))}
-        </Tabs>
-      )}
+      <StyledRow>
+        <div>
+          <Link href="/" passHref>
+            <a>
+              <StyledLogo />
+            </a>
+          </Link>
+          {title && <StyledTitle>{title}</StyledTitle>}
+        </div>
+        {tabs && (
+          <Tabs
+            value={selected}
+            TabIndicatorProps={{
+              style: {
+                backgroundColor: 'white',
+              },
+            }}
+          >
+            {tabs.map((t, i) => (
+              <Link key={i} href={t.target} passHref>
+                <StyledTab label={t.text} />
+              </Link>
+            ))}
+          </Tabs>
+        )}
+      </StyledRow>
     </StyledBar>
   );
 }
