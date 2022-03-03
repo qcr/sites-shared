@@ -61,8 +61,8 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
             },
           }}
         >
-          {tabs.map((t) => (
-            <Link href={t.target} passHref>
+          {tabs.map((t, i) => (
+            <Link key={i} href={t.target} passHref>
               <StyledTab label={t.text} />
             </Link>
           ))}
