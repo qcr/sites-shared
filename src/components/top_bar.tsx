@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import {useRouter} from 'next/router';
 import React from 'react';
 
 import {AppBar, Tab, Tabs, styled} from '@mui/material';
@@ -7,6 +6,15 @@ import {AppBar, Tab, Tabs, styled} from '@mui/material';
 import {mq} from '../styles/components';
 
 import QcrLogo from '../assets/QcrLogoLight.js';
+
+interface TopBarProps {
+  selected: number | false;
+  title?: string;
+  tabs: {
+    text: string;
+    target: string;
+  }[];
+}
 
 const StyledBar = styled(AppBar)({
   alignItems: 'center',
@@ -31,15 +39,7 @@ const StyledTab = styled(Tab)(({theme}) => ({
   textTransform: 'capitalize',
 }));
 
-export default function TopBar() {
-  const r = useRouter();
-  const selected = r.asPath.startsWith('/collection')
-    ? 0
-    : r.asPath.startsWith('/code')
-    ? 1
-    : r.asPath.startsWith('/dataset')
-    ? 2
-    : false;
+export default function TopBar({title, tabs, selected = false}: TopBarProps) {
   return (
     <StyledBar>
       <Link href="/" passHref>
@@ -47,24 +47,22 @@ export default function TopBar() {
           <StyledLogo />
         </a>
       </Link>
-      <Tabs
-        value={selected}
-        TabIndicatorProps={{
-          style: {
-            backgroundColor: 'white',
-          },
-        }}
-      >
-        <Link href="/collection" passHref>
-          <StyledTab label="Collections" />
-        </Link>
-        <Link href="/code" passHref>
-          <StyledTab label="Code" />
-        </Link>
-        <Link href="/dataset" passHref>
-          <StyledTab label="Datasets" />
-        </Link>
-      </Tabs>
+      {tabs && (
+        <Tabs
+          value={selected}
+          TabIndicatorProps={{
+            style: {
+              backgroundColor: 'white',
+            },
+          }}
+        >
+          {tabs.map((t) => (
+            <Link href={t.target} passHref>
+              <StyledTab label={t.text} />
+            </Link>
+          ))}
+        </Tabs>
+      )}
     </StyledBar>
   );
 }
