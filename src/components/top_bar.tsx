@@ -68,7 +68,9 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
               <StyledLogo />
             </a>
           </Link>
-          {title && <StyledTitle variant="h4">{title}</StyledTitle>}
+          {title && (
+            <StyledTitle variant="h4">{title.replace(' ', '\n')}</StyledTitle>
+          )}
         </StyledHome>
         {tabs && (
           <StyledTabs
