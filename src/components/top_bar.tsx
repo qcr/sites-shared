@@ -56,6 +56,8 @@ const StyledTabs = styled(Tabs)({
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
   fontWeight: 'bold',
+  marginLeft: '12px',
+  marginRight: '12px',
   textAlign: 'center',
 }));
 
@@ -70,7 +72,7 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
             </a>
           </Link>
           {title && (
-            <StyledTitle variant="h4">{title.replace(' ', '\n')}</StyledTitle>
+            <StyledTitle variant="h4">{title.replace(' ', '\\n')}</StyledTitle>
           )}
         </StyledHome>
         {tabs && (
