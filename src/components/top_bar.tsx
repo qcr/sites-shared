@@ -18,10 +18,6 @@ interface TopBarProps {
 
 const StyledBar = styled(AppBar)({
   alignItems: 'center',
-  justifyContent: 'space-between',
-  [mq('tablet')]: {
-    flexDirection: 'row',
-  },
 });
 
 const StyledLogo = styled(QcrLogo)({
@@ -34,7 +30,11 @@ const StyledLogo = styled(QcrLogo)({
 });
 
 const StyledRow = styled('div')({
+  justifyContent: 'space-between',
   width: '90%',
+  [mq('tablet')]: {
+    flexDirection: 'row',
+  },
 });
 
 const StyledTab = styled(Tab)(({theme}) => ({
