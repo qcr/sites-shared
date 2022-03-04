@@ -20,6 +20,10 @@ const StyledBar = styled(AppBar)({
   alignItems: 'center',
 });
 
+const StyledHome = styled('div')({
+  display: 'flex',
+});
+
 const StyledLogo = styled(QcrLogo)({
   width: '100px',
   margin: '0px 6px',
@@ -30,6 +34,8 @@ const StyledLogo = styled(QcrLogo)({
 });
 
 const StyledRow = styled('div')({
+  alignItems: 'center',
+  display: 'flex',
   justifyContent: 'space-between',
   width: '90%',
   [mq('tablet')]: {
@@ -43,6 +49,10 @@ const StyledTab = styled(Tab)(({theme}) => ({
   textTransform: 'capitalize',
 }));
 
+const StyledTabs = styled(Tabs)({
+  maxHeight: '48px',
+});
+
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
 }));
@@ -51,16 +61,16 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
   return (
     <StyledBar>
       <StyledRow>
-        <div>
+        <StyledHome>
           <Link href="/" passHref>
             <a>
               <StyledLogo />
             </a>
           </Link>
           {title && <StyledTitle>{title}</StyledTitle>}
-        </div>
+        </StyledHome>
         {tabs && (
-          <Tabs
+          <StyledTabs
             value={selected}
             TabIndicatorProps={{
               style: {
@@ -73,7 +83,7 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
                 <StyledTab label={t.text} />
               </Link>
             ))}
-          </Tabs>
+          </StyledTabs>
         )}
       </StyledRow>
     </StyledBar>
