@@ -55,6 +55,7 @@ const StyledTabs = styled(Tabs)({
 
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
+  fontWeight: 'bold',
   textAlign: 'center',
 }));
 
