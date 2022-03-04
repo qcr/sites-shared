@@ -55,6 +55,7 @@ const StyledTabs = styled(Tabs)({
 
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
+  textAlign: 'center',
 }));
 
 export default function TopBar({title, tabs, selected = false}: TopBarProps) {
@@ -67,7 +68,7 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
               <StyledLogo />
             </a>
           </Link>
-          {title && <StyledTitle>{title}</StyledTitle>}
+          {title && <StyledTitle variant="h4">{title}</StyledTitle>}
         </StyledHome>
         {tabs && (
           <StyledTabs
