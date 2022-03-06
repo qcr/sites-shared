@@ -13,6 +13,13 @@ export function qcr_mqs(name: BreakPointName) {
   return `@media (min-width: ${_mqs[name]}px)`;
 }
 
+export const QcrBody = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  flexGrow: 1,
+  margin: '0 auto',
+});
+
 export const QcrFocusBox = styled(Typography)({
   alignItems: 'center',
   backgroundColor: 'grey',

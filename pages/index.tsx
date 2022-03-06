@@ -1,10 +1,14 @@
-import {StyledTitle} from '../src';
+import {QcrBody, QcrBottomBar, QcrPage, QcrTitle, QcrTopBar} from '../src';
 
 export default function HomePage() {
   return (
-    <>
-      <StyledTitle variant="h1">QCR Title</StyledTitle>
-      <p>working</p>
-    </>
+    <QcrPage>
+      <QcrTopBar title="Dummy page" />
+      <QcrTitle variant="h1">QCR Title</QcrTitle>
+      <QcrBody>
+        <p>working</p>
+      </QcrBody>
+      <QcrBottomBar />
+    </QcrPage>
   );
 }
