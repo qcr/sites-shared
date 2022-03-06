@@ -43,6 +43,13 @@ const StyledRow = styled('div')({
   },
 });
 
+const StyledSpace = styled('div')({
+  height: '128px',
+  [qcr_mqs('tablet')]: {
+    height: '92px',
+  },
+});
+
 const StyledTab = styled(Tab)(({theme}) => ({
   color: theme.palette.primary.contrastText,
   opacity: 1.0,
@@ -63,35 +70,40 @@ const StyledTitle = styled(Typography)(({theme}) => ({
 
 export default function TopBar({title, tabs, selected = false}: TopBarProps) {
   return (
-    <StyledBar>
-      <StyledRow>
-        <StyledHome>
-          <Link href="/" passHref>
-            <a>
-              <StyledLogo />
-            </a>
-          </Link>
-          {title && (
-            <StyledTitle variant="h4">{title.replace(' ', '\\n')}</StyledTitle>
+    <>
+      <StyledBar>
+        <StyledRow>
+          <StyledHome>
+            <Link href="/" passHref>
+              <a>
+                <StyledLogo />
+              </a>
+            </Link>
+            {title && (
+              <StyledTitle variant="h4">
+                {title.replace(' ', '\\n')}
+              </StyledTitle>
+            )}
+          </StyledHome>
+          {tabs && (
+            <StyledTabs
+              value={selected}
+              TabIndicatorProps={{
+                style: {
+                  backgroundColor: 'white',
+                },
+              }}
+            >
+              {tabs.map((t, i) => (
+                <Link key={i} href={t.target} passHref>
+                  <StyledTab label={t.text} />
+                </Link>
+              ))}
+            </StyledTabs>
           )}
-        </StyledHome>
-        {tabs && (
-          <StyledTabs
-            value={selected}
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: 'white',
-              },
-            }}
-          >
-            {tabs.map((t, i) => (
-              <Link key={i} href={t.target} passHref>
-                <StyledTab label={t.text} />
-              </Link>
-            ))}
-          </StyledTabs>
-        )}
-      </StyledRow>
-    </StyledBar>
+        </StyledRow>
+      </StyledBar>
+      <StyledSpace />
+    </>
   );
 }
