@@ -1,17 +1,20 @@
 {
   "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
-    "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
-    "jsx": "react",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "outDir": "./lib",
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2015"
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
   },
-  "include": ["sites-shared.d.ts", "src"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
