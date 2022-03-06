@@ -1,14 +1,10 @@
-import type {NextPage} from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
+import {StyledTitle} from '../src';
 
-const Home: NextPage = () => {
+export default function HomePage() {
   return (
     <>
-      <h3>Test</h3>
-      <div>Hello?</div>
+      <StyledTitle variant="h1">QCR Title</StyledTitle>
+      <p>working</p>
     </>
   );
-};
-
-export default Home;
+}
