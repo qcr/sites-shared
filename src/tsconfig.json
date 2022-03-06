@@ -7,11 +7,10 @@
     "jsx": "react",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "outDir": "./lib",
+    "outDir": "../lib",
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2015"
   },
-  "include": ["sites-shared.d.ts", "src"],
-  "exclude": ["node_modules"]
+  "include": ["."]
 }

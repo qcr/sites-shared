@@ -1,4 +1,5 @@
 *.sw*
+*.tsbuildinfo
 
 node_modules
 /lib
