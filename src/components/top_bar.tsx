@@ -3,7 +3,7 @@ import React from 'react';
 
 import {AppBar, Tab, Tabs, styled, Typography} from '@mui/material';
 
-import {mq} from '../styles/components';
+import {qcr_mqs} from '../styles/components';
 
 import QcrLogo from '../assets/QcrLogoLight.js';
 
@@ -28,7 +28,7 @@ const StyledLogo = styled(QcrLogo)({
   width: '100px',
   margin: '0px 6px',
   cursor: 'pointer',
-  [mq('tablet')]: {
+  [qcr_mqs('tablet')]: {
     width: '150px',
   },
 });
@@ -38,7 +38,7 @@ const StyledRow = styled('div')({
   display: 'flex',
   justifyContent: 'space-between',
   width: '90%',
-  [mq('tablet')]: {
+  [qcr_mqs('tablet')]: {
     flexDirection: 'row',
   },
 });

@@ -9,11 +9,11 @@ const _mqs: {[key in BreakPointName]: number} = {
   'hi-res': 1281,
 };
 
-export function mq(name: BreakPointName) {
+export function qcr_mqs(name: BreakPointName) {
   return `@media (min-width: ${_mqs[name]}px)`;
 }
 
-export const FocusBox = styled(Typography)({
+export const QcrFocusBox = styled(Typography)({
   alignItems: 'center',
   backgroundColor: 'grey',
   borderColor: 'black',
@@ -29,18 +29,18 @@ export const FocusBox = styled(Typography)({
   textAlign: 'center',
 });
 
-export const Missing = styled(FocusBox)({
+export const QcrMissingContentBox = styled(QcrFocusBox)({
   backgroundColor: 'lightsalmon',
   borderColor: 'salmon',
   height: '1000px',
 });
 
-export const Notify = styled(FocusBox)({
+export const QcrNotificationBar = styled(QcrFocusBox)({
   backgroundColor: 'lightsalmon',
   borderColor: 'salmon',
 });
 
-export const StyledMarkdown = styled(Typography)({
+export const QcrMarkdown = styled(Typography)({
   '&&': {
     margin: '0 auto',
     maxWidth: '45rem',
@@ -58,6 +58,15 @@ export const StyledMarkdown = styled(Typography)({
   },
 });
 
-export const StyledTitle = styled(Typography)({
+export const QcrPage = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: '100vh',
+  a: {
+    color: 'inherit',
+  },
+});
+
+export const QcrTitle = styled(Typography)({
   marginTop: '48px',
 });

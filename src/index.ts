@@ -1,13 +1,13 @@
-export {default as BottomBar} from './components/bottom_bar';
-export {default as CardCarousel} from './components/card_carousel';
+export {default as QcrBottomBar} from './components/bottom_bar';
+export {default as QcrCardCarousel} from './components/card_carousel';
 export {
-  default as ContentCard,
-  ContentCardProps,
+  default as QcrContentCard,
+  ContentCardProps as QcrContentCardProps,
 } from './components/content_card';
-export {default as FocusButton} from './components/focus_button';
-export {default as ResponsiveMedia} from './components/responsive_media';
-export {default as SimpleDialog} from './components/simple_dialog';
-export {default as TopBar} from './components/top_bar';
+export {default as QcrFocusButton} from './components/focus_button';
+export {default as QcrResponsiveMedia} from './components/responsive_media';
+export {default as QcrSimpleDialog} from './components/simple_dialog';
+export {default as QcrTopBar} from './components/top_bar';
 
 export * from './styles/components';
 export * from './styles/themes';
