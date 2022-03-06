@@ -18,6 +18,9 @@ export const QcrBody = styled('div')({
   flexDirection: 'column',
   flexGrow: 1,
   margin: '0 auto',
+  maxWidth: '970px',
+  padding: '10px',
+  width: '100%',
 });
 
 export const QcrFocusBox = styled(Typography)({
