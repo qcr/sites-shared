@@ -5,6 +5,8 @@ import {
   QcrCardCarousel,
   QcrContentCard,
   QcrFocusButton,
+  QcrMissingContentBox,
+  QcrNotificationBar,
   QcrPage,
   QcrSimpleDialog,
   QcrText,
@@ -58,7 +60,7 @@ export default function HomePage() {
             atque repellendus consequatur.
           </p>
           <QcrTitle variant="h4" color="primary">
-            Some cards
+            Cards
           </QcrTitle>
           <QcrTitle variant="h5" color="primary">
             Feature cards
@@ -77,7 +79,7 @@ export default function HomePage() {
             <QcrCardCarousel cardsData={CONTENT_CARDS} itemsFactor={0.5} />
           </QcrTitle>
           <QcrTitle variant="h4" color="primary">
-            Some buttons and dialogs
+            Buttons and dialogs
           </QcrTitle>
           <QcrFocusButton url={URL} text="QCR homepage" newTab />
           <br />
@@ -107,8 +109,10 @@ export default function HomePage() {
           videos. Good for web optimisation where you have to balance supporting
           both highly-optimised and widely-supported media.
           <QcrTitle variant="h4" color="primary">
-            Some placeholders
+            Placeholders
           </QcrTitle>
+          <QcrMissingContentBox>Missing content</QcrMissingContentBox>
+          <QcrNotificationBar>Notification bar</QcrNotificationBar>
         </QcrText>
       </QcrBody>
       <QcrBottomBar />

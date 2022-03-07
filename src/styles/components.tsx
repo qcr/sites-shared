@@ -82,6 +82,6 @@ export const QcrMissingContentBox = styled(QcrFocusBox)({
 });
 
 export const QcrNotificationBar = styled(QcrFocusBox)({
-  backgroundColor: 'lightsalmon',
-  borderColor: 'salmon',
+  backgroundColor: 'orange',
+  borderColor: 'darkorange',
 });
