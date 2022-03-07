@@ -4,6 +4,7 @@ export {
   default as QcrContentCard,
   ContentCardProps as QcrContentCardProps,
 } from './components/content_card';
+export {default as QcrFeatureCard} from './components/feature_card';
 export {default as QcrFocusButton} from './components/focus_button';
 export {default as QcrResponsiveMedia} from './components/responsive_media';
 export {default as QcrSimpleDialog} from './components/simple_dialog';
