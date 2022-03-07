@@ -1,28 +1,38 @@
 import {styled} from '@mui/material';
-import FocusButton from '../lib/components/focus_button';
 import {
   QcrBody,
   QcrBottomBar,
+  QcrCardCarousel,
+  QcrContentCard,
+  QcrFocusButton,
   QcrPage,
+  QcrSimpleDialog,
   QcrText,
   QcrTitle,
   QcrTopBar,
 } from '../src';
-import CardCarousel from '../src/components/card_carousel';
-import ContentCard from '../src/components/content_card';
+
+import DownloadIcon from '!@svgr/webpack!/public/icon_download.svg';
+import {useState} from 'react';
+
+const URL = 'https://research.qut.edu.au/qcr';
 
 const CONTENT_CARDS = Array.from({length: 10}, (_, i) => i + 1).map((i) => ({
   linkUrl: 'https://www.google.com',
   primaryText: `Content card ${i}`,
-  ...(i < 5
-    ? {secondaryText: 'extra text', secondaryTransform: 'capitalize'}
-    : {}),
+  ...(i < 5 ? {secondaryText: 'extra text'} : {}),
   mediaUrls: i % 5 ? [`/dummy_${i % 5}.jpg`] : undefined,
+}));
+
+const DIALOG_ITEMS = Array.from({length: 5}, (_, i) => i + 1).map((i) => ({
+  primaryText: `Primary text ${i}`,
+  secondaryText: `extra ${i}`,
+  linkUrl: URL,
 }));
 
 const TABS = [
   {text: 'Home', target: '/'},
-  {text: 'External', target: 'https://research.qut.edu.au/qcr'},
+  {text: 'External', target: URL},
 ];
 
 const StyledCards = styled('div')({
@@ -32,6 +42,7 @@ const StyledCards = styled('div')({
 });
 
 export default function HomePage() {
+  const [dialogOpen, setDialogOpen] = useState(false);
   return (
     <QcrPage>
       <QcrTopBar title="Sample homepage" tabs={TABS} selected={0} />
@@ -58,16 +69,37 @@ export default function HomePage() {
           </QcrTitle>
           <StyledCards>
             {CONTENT_CARDS.map((c, i) => (
-              <ContentCard key={i} {...c} />
+              <QcrContentCard key={i} {...c} />
             ))}
           </StyledCards>
           <QcrTitle variant="h5" color="primary">
             A carousel of content cards
-            <CardCarousel cardsData={CONTENT_CARDS} itemsFactor={0.5} />
+            <QcrCardCarousel cardsData={CONTENT_CARDS} itemsFactor={0.5} />
           </QcrTitle>
           <QcrTitle variant="h4" color="primary">
             Some buttons and dialogs
           </QcrTitle>
+          <QcrFocusButton url={URL} text="QCR homepage" newTab />
+          <br />
+          <br />
+          <QcrFocusButton
+            url={URL}
+            text="With icon"
+            newTab
+            icon={<DownloadIcon />}
+          />
+          <br />
+          <br />
+          <QcrFocusButton
+            text="Open dialog"
+            onClick={() => setDialogOpen(true)}
+          />
+          <QcrSimpleDialog
+            title="Dummy dialog"
+            open={dialogOpen}
+            onClose={() => setDialogOpen(false)}
+            items={DIALOG_ITEMS}
+          />
           <QcrTitle variant="h4" color="primary">
             Responsive media
           </QcrTitle>
