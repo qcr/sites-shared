@@ -5,6 +5,8 @@ import {Card, CardActionArea, Typography, styled} from '@mui/material';
 
 import ResponsiveMedia from '../components/responsive_media';
 
+import QcrLogoFilled from '../assets/QcrLogoLightFilled';
+
 const ELEVATION_DEFAULT = 2;
 const ELEVATION_HIGHLIGHT = 8;
 
@@ -28,9 +30,14 @@ const StyledCard = styled(Card)({
   width: CARD_WIDTH,
 });
 
-const StyledClickable = styled(CardActionArea)({
+const StyledClickable = styled(CardActionArea)(({theme}) => ({
+  backgroundColor: theme.palette.primary.main,
   height: '100%',
   position: 'relative',
+}));
+
+const StyledDefault = styled(QcrLogoFilled)({
+  width: '100%',
 });
 
 const StyledFooter = styled('div')(({theme}) => ({
@@ -101,16 +108,20 @@ export default function ContentCard({
     >
       <Link href={linkUrl} passHref>
         <StyledClickable>
-          <StyledMedia
-            altText=""
-            images={mediaUrls ? mediaUrls : []}
-            style={
-              {
-                objectPosition: mediaPosition,
-                objectFit: mediaFit,
-              } as React.CSSProperties
-            }
-          />
+          {mediaUrls ? (
+            <StyledMedia
+              altText=""
+              images={mediaUrls ? mediaUrls : []}
+              style={
+                {
+                  objectPosition: mediaPosition,
+                  objectFit: mediaFit,
+                } as React.CSSProperties
+              }
+            />
+          ) : (
+            <StyledDefault />
+          )}
           <StyledFooter>
             <StyledInfo
               variant="body2"
