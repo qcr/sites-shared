@@ -4,7 +4,7 @@ interface ResponsiveMediaProps {
   altText: string;
   images: string[];
   className?: string;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 export default function ResponsiveMedia({
