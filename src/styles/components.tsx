@@ -1,4 +1,4 @@
-import {Typography, styled} from '@mui/material';
+import {Typography, styled, TypographyProps} from '@mui/material';
 
 export type BreakPointName = 'phone' | 'tablet' | 'laptop' | 'hi-res';
 
@@ -56,6 +56,8 @@ export const QcrText = styled(Typography)({
   margin: '0 auto',
   maxWidth: '45rem',
 });
+// @ts-ignore
+QcrText.defaultProps = {component: 'div'};
 
 export const QcrMarkdown = styled(QcrText)({
   '&&': {
