@@ -8,6 +8,7 @@ import {
   QcrMissingContentBox,
   QcrNotificationBar,
   QcrPage,
+  QcrResponsiveMedia,
   QcrSimpleDialog,
   QcrText,
   QcrTitle,
@@ -108,6 +109,24 @@ export default function HomePage() {
           This supports multiple media sources, and handles both images and
           videos. Good for web optimisation where you have to balance supporting
           both highly-optimised and widely-supported media.
+          <br />
+          <br />
+          Raw GIF:
+          <QcrResponsiveMedia altText="Raw GIF" images={['/panda.gif']} />
+          <br />
+          <br />
+          Multi-source video:
+          <QcrResponsiveMedia
+            altText="Multi-source video"
+            images={['/panda.webm', '/panda.mp4']}
+          />
+          <br />
+          <br />
+          Multi-source image:
+          <QcrResponsiveMedia
+            altText="Multi-source image"
+            images={['/panda.webp', '/panda.jpg']}
+          />
           <QcrTitle variant="h4" color="primary">
             Placeholders
           </QcrTitle>
