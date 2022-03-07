@@ -4,7 +4,7 @@ import {Button, styled} from '@mui/material';
 interface FocusButtonProps {
   url?: string;
   text: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   newTab?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
