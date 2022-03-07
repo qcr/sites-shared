@@ -39,21 +39,26 @@ export const QcrFocusBox = styled(Typography)({
   textAlign: 'center',
 });
 
-export const QcrMissingContentBox = styled(QcrFocusBox)({
-  backgroundColor: 'lightsalmon',
-  borderColor: 'salmon',
-  height: '1000px',
+export const QcrPage = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: '100vh',
+  a: {
+    color: 'inherit',
+  },
 });
 
-export const QcrNotificationBar = styled(QcrFocusBox)({
-  backgroundColor: 'lightsalmon',
-  borderColor: 'salmon',
+export const QcrTitle = styled(Typography)({
+  marginTop: '48px',
 });
 
-export const QcrMarkdown = styled(Typography)({
+export const QcrText = styled(Typography)({
+  margin: '0 auto',
+  maxWidth: '45rem',
+});
+
+export const QcrMarkdown = styled(QcrText)({
   '&&': {
-    margin: '0 auto',
-    maxWidth: '45rem',
     '.embedded-block': {
       margin: '10px',
       textAlign: 'center',
@@ -68,15 +73,13 @@ export const QcrMarkdown = styled(Typography)({
   },
 });
 
-export const QcrPage = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  minHeight: '100vh',
-  a: {
-    color: 'inherit',
-  },
+export const QcrMissingContentBox = styled(QcrFocusBox)({
+  backgroundColor: 'lightsalmon',
+  borderColor: 'salmon',
+  height: '1000px',
 });
 
-export const QcrTitle = styled(Typography)({
-  marginTop: '48px',
+export const QcrNotificationBar = styled(QcrFocusBox)({
+  backgroundColor: 'lightsalmon',
+  borderColor: 'salmon',
 });

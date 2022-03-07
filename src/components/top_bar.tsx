@@ -8,9 +8,9 @@ import {qcr_mqs} from '../styles/components';
 import QcrLogo from '../assets/QcrLogoLight.js';
 
 interface TopBarProps {
-  selected: number | false;
+  selected?: number | false;
   title?: string;
-  tabs: {
+  tabs?: {
     text: string;
     target: string;
   }[];
@@ -64,7 +64,6 @@ const StyledTabs = styled(Tabs)({
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
   height: 'fit-content',
-  fontWeight: 'bold',
   marginLeft: '12px',
   marginRight: '12px',
   textAlign: 'center',
@@ -84,7 +83,7 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
               </a>
             </Link>
             {title && (
-              <StyledTitle variant="h6">{title.replace(' ', '\n')}</StyledTitle>
+              <StyledTitle variant="h5">{title.replace(' ', '\n')}</StyledTitle>
             )}
           </StyledHome>
           {tabs && (
