@@ -15,6 +15,7 @@ export type DialogOnClose = (
 ) => void;
 
 interface SimpleDialogProps {
+  title: string;
   open: boolean;
   onClose: DialogOnClose;
   items: {
@@ -40,13 +41,14 @@ const StyledTitle = styled(DialogTitle)(({theme}) => ({
 }));
 
 export default function SimpleDialog({
+  title,
   open,
   onClose,
   items,
 }: SimpleDialogProps) {
   return (
     <StyledDialog open={open} onClose={onClose}>
-      <StyledTitle>Select dataset variant</StyledTitle>
+      <StyledTitle>{title}</StyledTitle>
       <List>
         {items.map((i, ind) => (
           <StyledListItem key={ind}>
