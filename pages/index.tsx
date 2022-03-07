@@ -4,6 +4,7 @@ import {
   QcrBottomBar,
   QcrCardCarousel,
   QcrContentCard,
+  QcrFeatureCard,
   QcrFocusButton,
   QcrMissingContentBox,
   QcrNotificationBar,
@@ -21,7 +22,7 @@ import {useState} from 'react';
 const URL = 'https://research.qut.edu.au/qcr';
 
 const CONTENT_CARDS = Array.from({length: 10}, (_, i) => i + 1).map((i) => ({
-  linkUrl: 'https://www.google.com',
+  linkUrl: URL,
   primaryText: `Content card ${i}`,
   ...(i < 5 ? {secondaryText: 'extra text'} : {}),
   mediaUrls: i % 5 ? [`/dummy_${i % 5}.jpg`] : undefined,
@@ -31,6 +32,12 @@ const DIALOG_ITEMS = Array.from({length: 5}, (_, i) => i + 1).map((i) => ({
   primaryText: `Primary text ${i}`,
   secondaryText: `extra ${i}`,
   linkUrl: URL,
+}));
+
+const FEATURE_CARDS = Array.from({length: 5}, (_, i) => i).map((i) => ({
+  linkUrl: URL,
+  text: i ? `Image card` : `Video card`,
+  mediaUrls: i ? [`/dummy_${i}.jpg`] : ['/panda.mp4'],
 }));
 
 const TABS = [
@@ -66,7 +73,11 @@ export default function HomePage() {
           <QcrTitle variant="h5" color="primary">
             Feature cards
           </QcrTitle>
-          TODO
+          <StyledCards>
+            {FEATURE_CARDS.map((f, i) => (
+              <QcrFeatureCard key={i} {...f} />
+            ))}
+          </StyledCards>
           <QcrTitle variant="h5" color="primary">
             Content cards
           </QcrTitle>
