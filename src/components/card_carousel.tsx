@@ -7,6 +7,7 @@ import ContentCard, {ContentCardProps} from './content_card';
 
 interface CardCarouselProps {
   cardsData: ContentCardProps[];
+  itemsFactor?: number;
 }
 
 const StyledCarousel = styled(Carousel)(({theme}) => ({
@@ -27,16 +28,19 @@ const StyledItem = styled('div')({
   marginBottom: '30px',
 });
 
-export default function CardCarousel({cardsData}: CardCarouselProps) {
+export default function CardCarousel({
+  cardsData,
+  itemsFactor = 1,
+}: CardCarouselProps) {
   return (
     <StyledCarousel
       autoPlay={true}
       showDots={true}
       responsive={{
-        big: {breakpoint: {max: 100000, min: 1300}, items: 4},
-        med: {breakpoint: {min: 1000, max: 1300}, items: 3},
-        small: {breakpoint: {min: 650, max: 1000}, items: 2},
-        mini: {breakpoint: {min: 0, max: 650}, items: 1},
+        big: {breakpoint: {max: 100000, min: 1300}, items: 4 * itemsFactor},
+        med: {breakpoint: {min: 1000, max: 1300}, items: 3 * itemsFactor},
+        small: {breakpoint: {min: 650, max: 1000}, items: 2 * itemsFactor},
+        mini: {breakpoint: {min: 0, max: 650}, items: 1 * itemsFactor},
       }}
     >
       {Object.values(cardsData).map((c, i) => (
