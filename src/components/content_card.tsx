@@ -15,7 +15,7 @@ export interface ContentCardProps {
   mediaUrls?: string[];
   primaryText: string;
   secondaryText?: string;
-  secondaryTransform: 'capitalize' | 'lowercase' | 'none';
+  secondaryTransform?: 'capitalize' | 'lowercase' | 'none';
 }
 
 const CARD_HEIGHT = '265px';
