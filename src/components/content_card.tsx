@@ -7,9 +7,6 @@ import ResponsiveMedia from '../components/responsive_media';
 
 import QcrLogoFilled from '../assets/QcrLogoLightFilled';
 
-const ELEVATION_DEFAULT = 2;
-const ELEVATION_HIGHLIGHT = 8;
-
 export interface ContentCardProps {
   linkUrl: string;
   mediaFit?: string;
@@ -19,6 +16,9 @@ export interface ContentCardProps {
   secondaryText?: string;
   secondaryTransform?: 'capitalize' | 'lowercase' | 'none';
 }
+
+const ELEVATION_DEFAULT = 2;
+const ELEVATION_HIGHLIGHT = 8;
 
 const CARD_HEIGHT = '265px';
 const CARD_WIDTH = '300px';
