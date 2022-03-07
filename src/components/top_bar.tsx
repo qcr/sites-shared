@@ -21,6 +21,7 @@ const StyledBar = styled(AppBar)({
 });
 
 const StyledHome = styled('div')({
+  alignItems: 'center',
   display: 'flex',
 });
 
@@ -62,10 +63,13 @@ const StyledTabs = styled(Tabs)({
 
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
+  height: 'fit-content',
   fontWeight: 'bold',
   marginLeft: '12px',
   marginRight: '12px',
   textAlign: 'center',
+  textTransform: 'capitalize',
+  whiteSpace: 'pre-line',
 }));
 
 export default function TopBar({title, tabs, selected = false}: TopBarProps) {
@@ -80,9 +84,7 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
               </a>
             </Link>
             {title && (
-              <StyledTitle variant="h4">
-                {title.replace(' ', '\\n')}
-              </StyledTitle>
+              <StyledTitle variant="h6">{title.replace(' ', '\n')}</StyledTitle>
             )}
           </StyledHome>
           {tabs && (
