@@ -1,5 +1,12 @@
 # QCR's shared site development tools
 
+[![QUT Centre for Robotics Open Source](https://github.com/qcr/qcr.github.io/raw/master/misc/badge.svg)](https://qcr.github.io)
+
+<!--
+![Primary language](https://img.shields.io/github/languages/top/qcr/code_templates)
+[![License](https://img.shields.io/github/license/qcr/code_templates)](./LICENSE.txt)
+-->
+
 ![Screenshot of QCR demo site](./assets/demo_screenshot.jpg)
 
 This repository contains tools used in building QCR-branded websites.
