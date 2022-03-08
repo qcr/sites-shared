@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "../lib",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2015"
+  },
+  "include": ["."]
+}

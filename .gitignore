@@ -1,0 +1,8 @@
+*.sw*
+*.tsbuildinfo
+
+node_modules
+/lib
+/src/assets
+
+/.next/
