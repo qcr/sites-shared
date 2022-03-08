@@ -15,14 +15,15 @@ export type DialogOnClose = (
 ) => void;
 
 interface SimpleDialogProps {
-  title: string;
-  open: boolean;
-  onClose: DialogOnClose;
   items: {
     primaryText: string;
     secondaryText?: string;
     linkUrl: string;
   }[];
+  newTab?: boolean;
+  open: boolean;
+  onClose: DialogOnClose;
+  title: string;
 }
 
 const StyledDialog = styled(Dialog)({
@@ -41,23 +42,28 @@ const StyledTitle = styled(DialogTitle)(({theme}) => ({
 }));
 
 export default function SimpleDialog({
-  title,
+  items,
+  newTab = false,
   open,
   onClose,
-  items,
+  title,
 }: SimpleDialogProps) {
   return (
     <StyledDialog open={open} onClose={onClose}>
       <StyledTitle>{title}</StyledTitle>
       <List>
         {items.map((i, ind) => (
-          <StyledListItem key={ind}>
-            <a href={i.linkUrl} target="_blank" rel="noreferrer">
-              <ListItemText
-                primary={i.primaryText}
-                secondary={i.secondaryText ? i.secondaryText : ' '}
-              />
-            </a>
+          <StyledListItem
+            key={ind}
+            // @ts-ignore
+            component="a"
+            href={i.linkUrl}
+            target={newTab && '_blank'}
+          >
+            <ListItemText
+              primary={i.primaryText}
+              secondary={i.secondaryText ? i.secondaryText : ' '}
+            />
           </StyledListItem>
         ))}
       </List>
