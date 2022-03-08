@@ -1,11 +1,13 @@
 # QCR's shared site development tools
 
+![Screenshot of QCR demo site](./assets/demo_screenshot.jpg)
+
 This repository contains tools used in building QCR-branded websites.
 
 It includes:
 
 - styled QCR React components for building pages
-- custom QCR [Material UI theme](https://mui.com/customization/theming/)
+- a custom QCR [Material UI theme](https://mui.com/customization/theming/)
 - some sensible default global CSS styles
 - complete demo page for exploring how to use the components
 
