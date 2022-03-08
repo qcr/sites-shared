@@ -8,6 +8,22 @@ export interface FeatureCardProps {
   linkUrl: string;
   mediaUrls?: string[];
   text: string;
+  textVariant?:
+    | 'button'
+    | 'caption'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'inherit'
+    | 'subtitle1'
+    | 'subtitle2'
+    | 'body1'
+    | 'body2'
+    | 'overline'
+    | undefined;
 }
 
 const ELEVATION_DEFAULT = 2;
@@ -70,8 +86,9 @@ const StyledTextBox = styled('div')({
 
 export default function FeatureCard({
   linkUrl,
-  text,
   mediaUrls,
+  text,
+  textVariant = 'h4',
 }: FeatureCardProps) {
   const [elevation, setElevation] = useState(ELEVATION_DEFAULT);
   return (
@@ -85,7 +102,9 @@ export default function FeatureCard({
           {mediaUrls && <StyledMedia altText="" images={mediaUrls} />}
           <StyledOverlay />
           <StyledTextBox>
-            <StyledText>{text.replace(/ /g, '\n')}</StyledText>
+            <StyledText variant={textVariant}>
+              {text.replace(/ /g, '\n')}
+            </StyledText>
           </StyledTextBox>
         </StyledClickable>
       </Link>
