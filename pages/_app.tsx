@@ -3,9 +3,9 @@ import Head from 'next/head';
 
 import {ThemeProvider} from '@mui/material/styles';
 
-import {QcrFavicon, qcrTheme} from '../src';
+import {QcrFavicon, qcrTheme} from 'qcr-sites-shared';
 
-import '../src/styles/styles.css';
+import 'qcr-sites-shared/styles/styles.css';
 
 const theme = qcrTheme();
 

@@ -14,7 +14,7 @@ import {
   QcrText,
   QcrTitle,
   QcrTopBar,
-} from '../src';
+} from 'qcr-sites-shared';
 
 import DownloadIcon from '!@svgr/webpack!/public/icon_download.svg';
 import {useState} from 'react';

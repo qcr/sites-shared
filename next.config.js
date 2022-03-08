@@ -1,6 +1,10 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const path = require('path');
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+module.exports = {
+  reactStrictMode: true,
+  webpack: (config) => {
+    config.resolve.alias['qcr-sites-shared'] = path.resolve(__dirname, 'src/');
+    return config;
+  },
+};
