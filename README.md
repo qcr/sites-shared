@@ -38,7 +38,7 @@ Make sure you have the latest LTS of NodeJs installed (see [guide below](#instal
 
 ## Instructions for building your own site
 
-1. Start a new [NextJs app](https://nextjs.org/docs/getting-started), enabling TypeScript:
+1. Create a new TypeScript-enabled [NextJs app](https://nextjs.org/docs/getting-started), which will be created in a new directory in your current folder:
    ```
    npx create-next-app@latest --typescript
    ```
