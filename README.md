@@ -28,7 +28,7 @@ Make sure you have the latest LTS of NodeJs installed (see [guide below](#instal
    ```
 2. Install node dependencies locally:
    ```
-   node install
+   npm install
    ```
 3. Start the local development server:
    ```
