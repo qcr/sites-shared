@@ -11,12 +11,10 @@ async function asyncLoader(
   cb: (err: Error | null, result: string) => void
 ) {
   // Obtain and return the file list
-  cb(
-    null,
-    `export default ${JSON.stringify(
-      await globsToFiles(input.trim().split('\n'), ctx.context, ctx.rootContext)
-    )}`
+  const out = JSON.stringify(
+    await globsToFiles(input.trim().split('\n'), ctx.context, ctx.rootContext)
   );
+  cb(null, ctx.loaderIndex == 0 ? `export default ${out}` : out);
   return;
 }
 

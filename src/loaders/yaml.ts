@@ -6,5 +6,6 @@ export default function loader(
   this: webpack.LoaderContext<any>,
   input: string
 ): string {
-  return `export default ${JSON.stringify(yaml.parse(input))}`;
+  const out = JSON.stringify(yaml.parse(input));
+  return this.loaderIndex == 0 ? `export default ${out}` : out;
 }
