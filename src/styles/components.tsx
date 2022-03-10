@@ -14,6 +14,7 @@ export function qcr_mqs(name: BreakPointName) {
 }
 
 export const QcrBody = styled('div')({
+  alignItems: 'center',
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
