@@ -52,6 +52,7 @@ export const QcrPage = styled('div')({
 export const QcrTitle = styled(Typography)({
   marginTop: '48px',
 });
+QcrTitle.defaultProps = {variant: 'h3', color: 'primary'};
 
 export const QcrText = styled(Typography)({
   margin: '0 auto',
