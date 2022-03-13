@@ -76,6 +76,12 @@ export const QcrMarkdown = styled(QcrText)({
     },
   },
 });
+QcrMarkdown.defaultProps = {
+  className: 'markdown-body',
+  variant: 'body1',
+  // @ts-ignore
+  component: 'div',
+};
 
 export const QcrMissingContentBox = styled(QcrFocusBox)({
   backgroundColor: 'lightsalmon',
