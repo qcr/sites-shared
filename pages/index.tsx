@@ -40,8 +40,9 @@ const FEATURE_CARDS = Array.from({length: 5}, (_, i) => i).map((i) => ({
   mediaUrls: i ? [`/dummy_${i}.jpg`] : ['/panda.mp4'],
 }));
 
-const TABS = [
+export const TABS = [
   {text: 'Home', target: '/'},
+  {text: 'Loaders', target: '/loaders'},
   {text: 'External', target: URL},
 ];
 
@@ -56,10 +57,10 @@ export default function HomePage() {
   return (
     <QcrPage>
       <QcrTopBar title="Sample homepage" tabs={TABS} selected={0} />
-      <QcrTitle variant="h3" color="primary">
-        QCR title
-      </QcrTitle>
       <QcrBody>
+        <QcrTitle variant="h3" color="primary">
+          QCR title
+        </QcrTitle>
         <QcrText>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
