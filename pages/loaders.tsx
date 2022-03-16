@@ -56,7 +56,11 @@ export default function LoadersPage() {
               <QcrTitle variant="h4">{l.title}</QcrTitle>
               <p>{l.path}</p>
               <StyledCode>{l.raw}</StyledCode>
-              <StyledCode>{JSON.stringify(l.ld, null, 2)}</StyledCode>
+              <StyledCode>
+                {typeof l.ld === 'string'
+                  ? l.ld
+                  : JSON.stringify(l.ld, null, 2)}
+              </StyledCode>
             </React.Fragment>
           ))}
         </QcrText>
