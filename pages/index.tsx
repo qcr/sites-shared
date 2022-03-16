@@ -19,10 +19,10 @@ import {
 import DownloadIcon from '!@svgr/webpack!/public/icon_download.svg';
 import {useState} from 'react';
 
-const URL = 'https://research.qut.edu.au/qcr';
+const QCR_URL = 'https://research.qut.edu.au/qcr';
 
 const CONTENT_CARDS = Array.from({length: 10}, (_, i) => i + 1).map((i) => ({
-  linkUrl: URL,
+  linkUrl: QCR_URL,
   primaryText: `Content card ${i}`,
   ...(i < 5 ? {secondaryText: 'extra text'} : {}),
   mediaUrls: i % 5 ? [`/dummy_${i % 5}.jpg`] : undefined,
@@ -31,11 +31,11 @@ const CONTENT_CARDS = Array.from({length: 10}, (_, i) => i + 1).map((i) => ({
 const DIALOG_ITEMS = Array.from({length: 5}, (_, i) => i + 1).map((i) => ({
   primaryText: `Primary text ${i}`,
   secondaryText: `extra ${i}`,
-  linkUrl: URL,
+  linkUrl: QCR_URL,
 }));
 
 const FEATURE_CARDS = Array.from({length: 5}, (_, i) => i).map((i) => ({
-  linkUrl: URL,
+  linkUrl: QCR_URL,
   text: i ? `Image card` : `Video card`,
   mediaUrls: i ? [`/dummy_${i}.jpg`] : ['/panda.mp4'],
 }));
@@ -43,7 +43,7 @@ const FEATURE_CARDS = Array.from({length: 5}, (_, i) => i).map((i) => ({
 export const TABS = [
   {text: 'Home', target: '/'},
   {text: 'Loaders', target: '/loaders'},
-  {text: 'External', target: URL},
+  {text: 'External', target: QCR_URL},
 ];
 
 const StyledCards = styled('div')({
@@ -84,11 +84,11 @@ export default function HomePage() {
             <QcrCardCarousel cardsData={CONTENT_CARDS} itemsFactor={0.5} />
           </QcrTitle>
           <QcrTitle variant="h4">Buttons and dialogs</QcrTitle>
-          <QcrFocusButton url={URL} text="QCR homepage" newTab />
+          <QcrFocusButton url={QCR_URL} text="QCR homepage" newTab />
           <br />
           <br />
           <QcrFocusButton
-            url={URL}
+            url={QCR_URL}
             text="With icon"
             newTab
             icon={<DownloadIcon />}
