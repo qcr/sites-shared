@@ -26,6 +26,9 @@ module.exports = {
         {
           test: /\.handlebars$/,
           loader: './lib/loaders/handlebars',
+          options: {
+            data: 'demo_assets/example.yaml',
+          },
         },
       ]
     );

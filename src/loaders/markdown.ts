@@ -13,7 +13,7 @@ const renderer = mdi({
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
   input: string,
-  cb: (err: Error | null, result: string) => void
+  cb: (err: Error | null, result?: string) => void
 ) {
   const out = JSON.stringify(renderer.render(input));
   cb(null, ctx.loaderIndex === 0 ? `export default ${out}` : out);

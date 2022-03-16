@@ -8,7 +8,7 @@ const globP = promisify(glob.glob);
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
   input: string,
-  cb: (err: Error | null, result: string) => void
+  cb: (err: Error | null, result?: string) => void
 ) {
   // Obtain and return the file list
   const out = JSON.stringify(
