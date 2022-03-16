@@ -5,7 +5,7 @@ async function asyncLoader(
   input: string,
   cb: (err: Error | null, result: string) => void
 ) {
-  const out = 'test';
+  const out = JSON.stringify('test');
   cb(null, ctx.loaderIndex == 0 ? `export default ${out}` : out);
 }
 

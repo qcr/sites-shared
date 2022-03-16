@@ -15,6 +15,18 @@ module.exports = {
           test: /\.files$/,
           loader: './lib/loaders/files',
         },
+        {
+          test: /\.ya?ml$/,
+          loader: './lib/loaders/yaml',
+        },
+        {
+          test: /\.md$/,
+          loader: './lib/loaders/markdown',
+        },
+        {
+          test: /\.handlebars$/,
+          loader: './lib/loaders/handlebars',
+        },
       ]
     );
     return config;
