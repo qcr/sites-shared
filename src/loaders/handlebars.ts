@@ -7,13 +7,15 @@ async function asyncLoader(
   input: string,
   cb: (err: Error | null, result?: string) => void
 ) {
-  const opts = ctx.getOptions();
+  const query = new URLSearchParams(ctx.resourceQuery.slice(1));
+  const d = query.get('data') ? query.get('data') : ctx.getOptions().data;
+  console.log(`DATA is ${d}`);
   let data;
   try {
-    if (!opts.data) throw Error();
-    data = (await ctx.importModule(opts.data)).default;
+    if (!d) throw Error();
+    data = (await ctx.importModule(d)).default;
   } catch (e) {
-    cb(Error(`Failed to load handlebars data from '${opts.data}'`));
+    cb(Error(`Failed to load handlebars data from '${d}'`));
     return;
   }
 
