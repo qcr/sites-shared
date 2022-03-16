@@ -59,41 +59,31 @@ export default function HomePage() {
       <QcrTopBar title="Sample homepage" tabs={TABS} selected={0} />
       <QcrBody>
         <QcrText>
-          <QcrTitle variant="h3" color="primary">
-            QCR title
-          </QcrTitle>
+          <QcrTitle>QCR title</QcrTitle>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             commodi officiis aperiam odit qui eius reiciendis ipsum laborum
             provident accusantium cum, sint facere aspernatur repellat a ad
             atque repellendus consequatur.
           </p>
-          <QcrTitle variant="h4" color="primary">
-            Cards
-          </QcrTitle>
-          <QcrTitle variant="h5" color="primary">
-            Feature cards
-          </QcrTitle>
+          <QcrTitle variant="h4">Cards</QcrTitle>
+          <QcrTitle variant="h5">Feature cards</QcrTitle>
           <StyledCards>
             {FEATURE_CARDS.map((f, i) => (
               <QcrFeatureCard key={i} {...f} />
             ))}
           </StyledCards>
-          <QcrTitle variant="h5" color="primary">
-            Content cards
-          </QcrTitle>
+          <QcrTitle variant="h5">Content cards</QcrTitle>
           <StyledCards>
             {CONTENT_CARDS.map((c, i) => (
               <QcrContentCard key={i} {...c} />
             ))}
           </StyledCards>
-          <QcrTitle variant="h5" color="primary">
+          <QcrTitle variant="h5">
             A carousel of content cards
             <QcrCardCarousel cardsData={CONTENT_CARDS} itemsFactor={0.5} />
           </QcrTitle>
-          <QcrTitle variant="h4" color="primary">
-            Buttons and dialogs
-          </QcrTitle>
+          <QcrTitle variant="h4">Buttons and dialogs</QcrTitle>
           <QcrFocusButton url={URL} text="QCR homepage" newTab />
           <br />
           <br />
