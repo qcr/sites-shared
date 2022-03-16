@@ -9,7 +9,6 @@ async function asyncLoader(
 ) {
   const query = new URLSearchParams(ctx.resourceQuery.slice(1));
   const d = query.get('data') ? query.get('data') : ctx.getOptions().data;
-  console.log(`DATA is ${d}`);
   let data;
   try {
     if (!d) throw Error();
