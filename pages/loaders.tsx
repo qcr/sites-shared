@@ -39,6 +39,7 @@ const StyledCode = styled('code')({
   margin: '8px 0px',
   minHeight: '2.5em',
   padding: '8px',
+  whiteSpace: 'pre',
   width: '100%',
 });
 
