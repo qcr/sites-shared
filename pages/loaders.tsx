@@ -34,12 +34,13 @@ const LOADS = [
 }));
 
 const StyledCode = styled('code')({
-  display: 'block',
+  display: 'inline-block',
   border: '2px black solid',
   margin: '8px 0px',
   minHeight: '2.5em',
+  overflowWrap: 'break-word',
   padding: '8px',
-  whiteSpace: 'pre',
+  whiteSpace: 'pre-wrap',
   width: '100%',
 });
 
