@@ -58,10 +58,10 @@ export default function HomePage() {
     <QcrPage>
       <QcrTopBar title="Sample homepage" tabs={TABS} selected={0} />
       <QcrBody>
-        <QcrTitle variant="h3" color="primary">
-          QCR title
-        </QcrTitle>
         <QcrText>
+          <QcrTitle variant="h3" color="primary">
+            QCR title
+          </QcrTitle>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             commodi officiis aperiam odit qui eius reiciendis ipsum laborum

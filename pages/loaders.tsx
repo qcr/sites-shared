@@ -14,10 +14,11 @@ export default function LoadersPage() {
     <QcrPage>
       <QcrTopBar title="Sample homepage" tabs={TABS} selected={1} />
       <QcrBody>
-        <QcrTitle variant="h3" color="primary">
-          Custom data loader demonstration
-        </QcrTitle>
-        <QcrText></QcrText>
+        <QcrText>
+          <QcrTitle variant="h3" color="primary">
+            Custom data loader demonstration
+          </QcrTitle>
+        </QcrText>
       </QcrBody>
       <QcrBottomBar />
     </QcrPage>
