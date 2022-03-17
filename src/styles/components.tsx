@@ -75,6 +75,7 @@ export const QcrMarkdown = styled(QcrText)({
       paddingRight: '0.3em',
     },
   },
+  width: '100%',
 });
 QcrMarkdown.defaultProps = {
   className: 'markdown-body',
