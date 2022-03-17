@@ -18,8 +18,11 @@ async function asyncLoader(
     return;
   }
 
-  const out = JSON.stringify(Handlebars.compile(input)(data));
-  cb(null, ctx.loaderIndex == 0 ? `export default ${out}` : out);
+  const out = Handlebars.compile(input)(data);
+  cb(
+    null,
+    ctx.loaderIndex == 0 ? `export default ${JSON.stringify(out)}` : out
+  );
 }
 
 export default function loader(

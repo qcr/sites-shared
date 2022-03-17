@@ -15,8 +15,11 @@ async function asyncLoader(
   input: string,
   cb: (err: Error | null, result?: string) => void
 ) {
-  const out = JSON.stringify(renderer.render(input));
-  cb(null, ctx.loaderIndex === 0 ? `export default ${out}` : out);
+  const out = renderer.render(input);
+  cb(
+    null,
+    ctx.loaderIndex === 0 ? `export default ${JSON.stringify(out)}` : out
+  );
 }
 
 export default function loader(
