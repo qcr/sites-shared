@@ -28,6 +28,7 @@ module.exports = {
           loader: './lib/loaders/handlebars',
           options: {
             data: 'demo_assets/example.yaml',
+            helpers: 'lib/loaders/handlebars-helpers',
           },
         },
       ]

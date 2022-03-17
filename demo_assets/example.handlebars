@@ -2,5 +2,8 @@ This is some templated {{my_field.some_data}} text, using the data in example.ya
 
 Here's processing of a list:
 {{#each a_list}}
-  - {{this.robot}} is at {{this.address}}
+- {{this.robot}} is at {{this.address}}
 {{/each}}
+
+Here's using a helper to transform a multi-line string into a list:
+{{list my_field.multiline}}
