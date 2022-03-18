@@ -43,6 +43,7 @@ const FEATURE_CARDS = Array.from({length: 5}, (_, i) => i).map((i) => ({
 export const TABS = [
   {text: 'Home', target: '/'},
   {text: 'Loaders', target: '/loaders'},
+  {text: 'Markdown', target: '/markdown'},
   {text: 'External', target: QCR_URL},
 ];
 
