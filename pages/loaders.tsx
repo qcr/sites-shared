@@ -1,4 +1,5 @@
 import React from 'react';
+import {renderToString} from 'react-dom/server';
 import {
   QcrBody,
   QcrBottomBar,
@@ -24,7 +25,7 @@ import handlebarsLd from 'demo_assets/example.handlebars';
 const LOADS = [
   ['.files', 'File list loader', filesRaw, filesLd],
   ['.yaml', 'YAML loader', yamlRaw, yamlLd],
-  ['.md', 'Markdown loader', mdRaw, mdLd],
+  ['.md', 'Markdown loader', mdRaw, renderToString(mdLd({}))],
   ['.handlebars', 'Handlebars templating loader', handlebarsRaw, handlebarsLd],
 ].map((e) => ({
   ld: e[3],

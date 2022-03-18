@@ -20,8 +20,9 @@ module.exports = {
           loader: './lib/loaders/yaml',
         },
         {
-          test: /\.md$/,
-          loader: './lib/loaders/markdown',
+          test: /\.mdx?$/,
+          // loader: './lib/loaders/markdown',
+          loader: '@mdx-js/loader',
         },
         {
           test: /\.handlebars$/,

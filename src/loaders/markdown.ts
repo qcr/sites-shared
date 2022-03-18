@@ -1,21 +1,11 @@
-import mdi from 'markdown-it';
-
 import type * as webpack from 'webpack';
-
-const renderer = mdi({
-  html: true,
-})
-  .use(require('markdown-it-block-embed'), {
-    containerClassName: 'embedded-block',
-  })
-  .use(require('markdown-it-prism'));
 
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
   input: string,
   cb: (err: Error | null, result?: string) => void
 ) {
-  const out = renderer.render(input);
+  const out = 'DISABLED';
   cb(
     null,
     ctx.loaderIndex === 0 ? `export default ${JSON.stringify(out)}` : out
