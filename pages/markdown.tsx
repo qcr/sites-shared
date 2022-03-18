@@ -19,7 +19,7 @@ export default function MarkdownPage() {
       <QcrBody>
         <QcrText>
           <QcrTitle>Demonstration of markdown capabilities</QcrTitle>
-          <QcrMarkdown>{md()}</QcrMarkdown>
+          <QcrMarkdown>{md({})}</QcrMarkdown>
         </QcrText>
       </QcrBody>
       <QcrBottomBar />

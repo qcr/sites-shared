@@ -1,9 +1,7 @@
 export {default as QcrBottomBar} from './components/bottom_bar';
 export {default as QcrCardCarousel} from './components/card_carousel';
-export {
-  default as QcrContentCard,
-  ContentCardProps as QcrContentCardProps,
-} from './components/content_card';
+export {default as QcrContentCard} from './components/content_card';
+export type {ContentCardProps as QcrContentCardProps} from './components/content_card';
 export {default as QcrFavicon} from './components/qcr_favicon';
 export {default as QcrFeatureCard} from './components/feature_card';
 export {default as QcrFocusButton} from './components/focus_button';
