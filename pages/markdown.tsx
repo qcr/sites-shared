@@ -12,8 +12,6 @@ import {TABS} from './index';
 
 import md from 'demo_assets/markdown_demo.md';
 
-console.log(md);
-
 export default function MarkdownPage() {
   return (
     <QcrPage>

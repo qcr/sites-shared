@@ -21,8 +21,7 @@ module.exports = {
         },
         {
           test: /\.mdx?$/,
-          // loader: './lib/loaders/markdown',
-          loader: '@mdx-js/loader',
+          loader: './lib/loaders/markdown',
         },
         {
           test: /\.handlebars$/,
