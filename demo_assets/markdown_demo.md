@@ -29,17 +29,21 @@ But there is a price for Markdown's simplicity. You quickly hit its limits when 
 
 For example, lets try making a table with some details about a robot in pure Markdown:
 
-| Guiabot     | Forced to have this | and this |
-| ----------- | ------------------- | -------- |
-| Description | GuiaBot is a robot  |          |
+| Husky       | Forced to have this                                                                                               | and this                           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| Description | Husky is a robot that does stuff                                                                                  | ![Robot](/example.jpg)             |
+| Features    | Mobile navigation, RGBD camera, Laser, Outdoor operation (good luck getting this into a nicely formatted list...) | and can't merge with above cell... |
 
-What a mess. Instead, we can communicate our information much more effectively through a JSX component. We can write it directly in our Markdown:
+Yuck. Instead, we can communicate our information much more effectively through a JSX component. We can write it directly in our Markdown:
+
+import {x, y} from './test.js'
+x is {x} and y is {y}
 
 But our Markdown quickly becomes more code than simple text. We could have less code-in-text by instead importing components:
 
-But this still isn't good enough. Replacing a solution with obscure syntax (pasting and tweaking raw HTML) with another obscure syntax (JSX) has changed the problem, not addressed it. The problem, being unable to express technical concepts clearly with a simple syntax, still needs us to put the simple syntax atop our MDX.
+But this still isn't good enough. Replacing a solution because of obscure syntax (pasting and tweaking raw HTML) with another obscure syntax (JSX) has changed the problem, not addressed it. The problem, being unable to express technical concepts clearly with a simple syntax, still needs us to put the simple syntax atop our MDX.
 
-We use a mostly [logic-less](https://dev.to/cocoroutine/truth-about-template-engines-3a7) application of [Handlebars](https://handlebarsjs.com/guide/#what-is-handlebars) to create a simply syntax for inserting complex components. For example, the following:
+We use a mostly [logic-less](https://dev.to/cocoroutine/truth-about-template-engines-3a7) application of [Handlebars](https://handlebarsjs.com/guide/#what-is-handlebars) to create a simple syntax for inserting complex components. For example, the following:
 
 ```
 {{ component <data> <component_name> }}

@@ -39,10 +39,23 @@ async function asyncLoader(
   cb: (err: Error | null, result?: string) => void
 ) {
   const compile = (await mdx).compile;
-  const x = await compile(input, {
-    remarkPlugins: [(await remarkGfm).default],
-  });
-  cb(null, String(x));
+  try {
+    const x = await compile(input, {
+      baseUrl: './',
+      remarkPlugins: [(await remarkGfm).default],
+    });
+    cb(null, String(x));
+  } catch (e) {
+    cb(
+      Error(
+        e instanceof Error
+          ? e.message
+          : typeof e === 'string'
+          ? e
+          : 'Undefined error'
+      )
+    );
+  }
 }
 
 export default function loader(
