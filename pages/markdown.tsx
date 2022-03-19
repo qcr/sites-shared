@@ -15,7 +15,7 @@ import md from 'demo_assets/markdown_demo.md';
 export default function MarkdownPage() {
   return (
     <QcrPage>
-      <QcrTopBar title="Sample homepage" tabs={TABS} selected={2} />
+      <QcrTopBar title="Sample homepage" tabs={TABS} selected={1} />
       <QcrBody>
         <QcrText>
           <QcrTitle>Demonstration of markdown capabilities</QcrTitle>

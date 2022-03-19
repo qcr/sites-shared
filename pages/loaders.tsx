@@ -48,7 +48,7 @@ const StyledCode = styled('code')({
 export default function LoadersPage() {
   return (
     <QcrPage>
-      <QcrTopBar title="Sample homepage" tabs={TABS} selected={1} />
+      <QcrTopBar title="Sample homepage" tabs={TABS} selected={2} />
       <QcrBody>
         <QcrText>
           <QcrTitle>Custom data loader demonstration</QcrTitle>
