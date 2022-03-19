@@ -2,7 +2,8 @@ import Handlebars from 'handlebars';
 
 import type * as webpack from 'webpack';
 
-import blah from './handlebars-helpers';
+import addHelpers from './handlebars-helpers';
+import type {HelperError} from './handlebars-helpers';
 
 const inst = Handlebars.create();
 
@@ -17,9 +18,7 @@ async function asyncLoader(
 
   const helpers = opts.helpers;
   if (helpers && !(helpers in loadedHelpers)) {
-    blah(inst);
-    // const fn = (await ctx.importModule(helpers)).default;
-    // fn(inst);
+    addHelpers(inst);
     loadedHelpers.push(helpers);
   }
 
@@ -34,11 +33,24 @@ async function asyncLoader(
     return;
   }
 
-  const out = inst.compile(input)(data);
-  cb(
-    null,
-    ctx.loaderIndex == 0 ? `export default ${JSON.stringify(out)}` : out
-  );
+  try {
+    const out = inst.compile(input)(data);
+    cb(
+      null,
+      ctx.loaderIndex == 0 ? `export default ${JSON.stringify(out)}` : out
+    );
+  } catch (e) {
+    // TODO figure out why we can't emit useful errors....
+    const err = e as HelperError;
+    // ctx.emitError(
+    //   Error(
+    //     `in ${ctx.resourcePath} Module Error (from ${
+    //       ctx.loaders[ctx.loaderIndex].path
+    //     })\n`
+    //   )
+    // );
+    cb(Error(`${err.name}: ${err.message}`));
+  }
 }
 
 export default function loader(
