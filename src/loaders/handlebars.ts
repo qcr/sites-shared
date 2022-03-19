@@ -28,7 +28,7 @@ async function asyncLoader(
 
   // Load and apply custom components list
   if (opts.components) {
-    Promise.all(
+    await Promise.all(
       (typeof opts.components === 'string'
         ? [opts.components]
         : (opts.components as string[])
@@ -49,7 +49,7 @@ async function asyncLoader(
 
   // Load and apply custom helpers list
   if (opts.helpers) {
-    Promise.all(
+    await Promise.all(
       (typeof opts.helpers === 'string'
         ? [opts.helpers]
         : (opts.helpers as string[])
