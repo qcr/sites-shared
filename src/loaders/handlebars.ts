@@ -3,38 +3,55 @@ import {promisify} from 'util';
 
 import type * as webpack from 'webpack';
 
-import addHelpers from './handlebars-helpers';
-import type {ComponentDeclarations, HelperError} from './handlebars-helpers';
+import {
+  componentClosure,
+  ComponentDeclarations,
+  components,
+  HelperDeclarations,
+  HelperError,
+  helpers,
+} from './handlebars-helpers';
 
 const inst = Handlebars.create();
 
-const definedComponents: ComponentDeclarations = {};
-const loadedHelpers: string[] = [];
+const definedComponents: ComponentDeclarations = {...components};
+const definedHelpers: HelperDeclarations = {...helpers};
 
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
   input: string,
   cb: (err: Error | null, result?: string) => void
 ) {
+  const loaderPath = ctx.loaders[ctx.loaderIndex].path;
   const resolveP = promisify(ctx.resolve);
   const opts = ctx.getOptions();
 
+  // Load and apply custom components list
   if (opts.components) {
-    const componentsPath = await resolveP(ctx.resourcePath, opts.components);
+    const componentsPath = await resolveP(loaderPath, opts.components);
     if (typeof componentsPath !== 'string') {
       cb(Error(`Could not find 'components': ${opts.components}`));
       return;
     }
     Object.assign(definedComponents, (await import(componentsPath)).default);
   }
-  console.log('OUT');
-  console.log(definedComponents);
+  definedHelpers.component = componentClosure(definedComponents);
 
-  const helpers = opts.helpers;
-  if (helpers && !(helpers in loadedHelpers)) {
-    addHelpers(inst);
-    loadedHelpers.push(helpers);
+  // Load and apply custom helpers list
+  if (opts.helpers) {
+    const helpersPath = await resolveP(loaderPath, opts.helpers);
+    if (typeof helpersPath !== 'string') {
+      cb(Error(`Could not find 'helpers': ${opts.helpers}`));
+      return;
+    }
+    Object.assign(definedHelpers, (await import(helpersPath)).default);
   }
+  inst.registerHelper(definedHelpers);
+
+  console.log('DEFINED COMPONENTS ARE:');
+  console.log(definedComponents);
+  console.log('DEFINED HELPERS ARE:');
+  console.log(definedHelpers);
 
   const query = new URLSearchParams(ctx.resourceQuery.slice(1));
   const d = query.get('data') ? query.get('data') : opts.data;

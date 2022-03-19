@@ -7,6 +7,8 @@ export type ComponentDeclarations = {
   [key: string]: (ctx: any) => React.ReactElement;
 };
 
+export type HelperDeclarations = HelperDeclareSpec;
+
 export const components: ComponentDeclarations = {
   Button: (ctx) => <Button>{ctx.title}</Button>,
   Typography: (ctx) => (
@@ -14,13 +16,29 @@ export const components: ComponentDeclarations = {
   ),
 };
 
+export const helpers: HelperDeclarations = {};
+
+export function componentClosure(components: ComponentDeclarations) {
+  return (...args: any[]) => {
+    const opts = args[args.length - 1] as HelperOptions;
+    if (args.length !== 3)
+      throw HelperArgsError('component', 3, args.length, opts);
+    if (!args[1] || !(args[1] in components)) {
+      throw ComponentError(args[1], opts);
+    }
+    return new Handlebars.SafeString(
+      renderToStaticMarkup(components[args[1]](args[0]))
+    );
+  };
+}
+
 export interface HelperError {
   name: string;
   message: string;
   details: HelperOptions;
 }
 
-export const HelperError = (
+export const helperError = (
   name: string,
   message: string,
   details: HelperOptions
@@ -31,7 +49,7 @@ export const HelperError = (
 });
 
 export const ComponentError = (name: string, opts: HelperOptions) =>
-  HelperError(
+  helperError(
     'ComponentError',
     `Requested component '${name}' is not supported.`,
     opts
@@ -43,26 +61,8 @@ export const HelperArgsError = (
   received: number,
   opts: HelperOptions
 ) =>
-  HelperError(
+  helperError(
     'ArgsError',
     `Helper '${name}' expects ${expected} arguments, but received ${received}.`,
     opts
   );
-
-const helpers: HelperDeclareSpec = {
-  component: (...args: any[]) => {
-    const opts = args[args.length - 1] as HelperOptions;
-    if (args.length !== 3)
-      throw HelperArgsError('component', 3, args.length, opts);
-    if (!args[1] || !(args[1] in components)) {
-      throw ComponentError(args[1], opts);
-    }
-    return new Handlebars.SafeString(
-      renderToStaticMarkup(components[args[1]](args[0]))
-    );
-  },
-};
-
-export default function addHelpers(hbs: typeof Handlebars) {
-  hbs.registerHelper(helpers);
-}
