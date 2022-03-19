@@ -65,11 +65,7 @@ async function asyncLoader(
   }
   inst.registerHelper(definedHelpers);
 
-  console.log('DEFINED COMPONENTS ARE:');
-  console.log(definedComponents);
-  console.log('DEFINED HELPERS ARE:');
-  console.log(definedHelpers);
-
+  // Load the requested data
   const query = new URLSearchParams(ctx.resourceQuery.slice(1));
   const d = query.get('data') ? query.get('data') : opts.data;
   let data;
@@ -81,6 +77,7 @@ async function asyncLoader(
     return;
   }
 
+  // Compile and return a result; erroring as gracefully as possible
   try {
     const out = inst.compile(input)(data);
     cb(
@@ -89,7 +86,7 @@ async function asyncLoader(
     );
   } catch (e) {
     // TODO figure out why we can't emit useful errors....
-    const err = e as HelperError;
+    // TODO print list of supported components as part of component errors
     // ctx.emitError(
     //   Error(
     //     `in ${ctx.resourcePath} Module Error (from ${
@@ -97,6 +94,7 @@ async function asyncLoader(
     //     })\n`
     //   )
     // );
+    const err = e as HelperError;
     cb(Error(`${err.name}: ${err.message}`));
   }
 }

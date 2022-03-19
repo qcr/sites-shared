@@ -1,5 +1,5 @@
 import Handlebars, {HelperDeclareSpec, HelperOptions} from 'handlebars';
-import {renderToStaticMarkup} from 'react-dom/server';
+import reactToString from 'react-element-to-jsx-string';
 
 import {Button, Typography} from '@mui/material';
 
@@ -27,7 +27,7 @@ export function componentClosure(components: ComponentDeclarations) {
       throw ComponentError(args[1], opts);
     }
     return new Handlebars.SafeString(
-      renderToStaticMarkup(components[args[1]](args[0]))
+      reactToString(components[args[1]](args[0]))
     );
   };
 }
