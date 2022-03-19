@@ -28,23 +28,40 @@ async function asyncLoader(
 
   // Load and apply custom components list
   if (opts.components) {
-    const componentsPath = await resolveP(loaderPath, opts.components);
-    if (typeof componentsPath !== 'string') {
-      cb(Error(`Could not find 'components': ${opts.components}`));
-      return;
-    }
-    Object.assign(definedComponents, (await import(componentsPath)).default);
+    Promise.all(
+      (typeof opts.components === 'string'
+        ? [opts.components]
+        : (opts.components as string[])
+      ).map(async (c) => {
+        const componentsPath = await resolveP(loaderPath, c);
+        if (typeof componentsPath !== 'string') {
+          cb(Error(`Could not find 'components': ${c}`));
+          return;
+        }
+        Object.assign(
+          definedComponents,
+          (await import(componentsPath)).default
+        );
+      })
+    );
   }
   definedHelpers.component = componentClosure(definedComponents);
 
   // Load and apply custom helpers list
   if (opts.helpers) {
-    const helpersPath = await resolveP(loaderPath, opts.helpers);
-    if (typeof helpersPath !== 'string') {
-      cb(Error(`Could not find 'helpers': ${opts.helpers}`));
-      return;
-    }
-    Object.assign(definedHelpers, (await import(helpersPath)).default);
+    Promise.all(
+      (typeof opts.helpers === 'string'
+        ? [opts.helpers]
+        : (opts.helpers as string[])
+      ).map(async (h) => {
+        const helpersPath = await resolveP(loaderPath, h);
+        if (typeof helpersPath !== 'string') {
+          cb(Error(`Could not find 'helpers': ${h}`));
+          return;
+        }
+        Object.assign(definedHelpers, (await import(helpersPath)).default);
+      })
+    );
   }
   inst.registerHelper(definedHelpers);
 
