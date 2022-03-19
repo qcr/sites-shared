@@ -3,9 +3,11 @@ import {renderToStaticMarkup} from 'react-dom/server';
 
 import {Button, Typography} from '@mui/material';
 
-type ComponentFunction = (ctx: any) => React.ReactElement;
+export type ComponentDeclarations = {
+  [key: string]: (ctx: any) => React.ReactElement;
+};
 
-export const components: {[key: string]: ComponentFunction} = {
+export const components: ComponentDeclarations = {
   Button: (ctx) => <Button>{ctx.title}</Button>,
   Typography: (ctx) => (
     <Typography variant={ctx.variant}>{ctx.text}</Typography>

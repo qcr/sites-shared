@@ -27,6 +27,7 @@ module.exports = {
           test: /\.handlebars$/,
           loader: './lib/loaders/handlebars',
           options: {
+            components: 'demo_assets/custom_components',
             data: 'demo_assets/example.yaml',
             helpers: 'lib/loaders/handlebars-helpers',
           },

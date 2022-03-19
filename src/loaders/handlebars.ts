@@ -1,12 +1,14 @@
 import Handlebars from 'handlebars';
+import {promisify} from 'util';
 
 import type * as webpack from 'webpack';
 
 import addHelpers from './handlebars-helpers';
-import type {HelperError} from './handlebars-helpers';
+import type {ComponentDeclarations, HelperError} from './handlebars-helpers';
 
 const inst = Handlebars.create();
 
+const definedComponents: ComponentDeclarations = {};
 const loadedHelpers: string[] = [];
 
 async function asyncLoader(
@@ -14,7 +16,19 @@ async function asyncLoader(
   input: string,
   cb: (err: Error | null, result?: string) => void
 ) {
+  const resolveP = promisify(ctx.resolve);
   const opts = ctx.getOptions();
+
+  if (opts.components) {
+    const componentsPath = await resolveP(ctx.resourcePath, opts.components);
+    if (typeof componentsPath !== 'string') {
+      cb(Error(`Could not find 'components': ${opts.components}`));
+      return;
+    }
+    Object.assign(definedComponents, (await import(componentsPath)).default);
+  }
+  console.log('OUT');
+  console.log(definedComponents);
 
   const helpers = opts.helpers;
   if (helpers && !(helpers in loadedHelpers)) {

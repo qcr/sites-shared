@@ -9,7 +9,7 @@
     "build": "npm run build_assets && tsc -p src/ && cp src/styles/*.css lib/styles/",
     "build_assets": "npx @svgr/cli --no-index --ignore-existing --out-dir src/assets/ assets/",
     "build_site": "npm run build && next build",
-    "dev": "npm run build && next dev",
+    "dev": "tsc -p demo_assets/ && npm run build && next dev",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
