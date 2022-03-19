@@ -41,7 +41,6 @@ async function asyncLoader(
   const compile = (await mdx).compile;
   try {
     const x = await compile(input, {
-      baseUrl: './',
       remarkPlugins: [(await remarkGfm).default],
     });
     cb(null, String(x));
