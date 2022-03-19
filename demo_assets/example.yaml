@@ -1,0 +1,13 @@
+my_field:
+  some_data: Test
+  multiline: >
+    line one
+    then next
+    and finally
+a_list:
+  - robot: GuiaBot
+    address: 127.0.0.1
+  - robot: Husky
+    address: 127.0.0.2
+  - robot: Panda
+    address: 127.0.0.3

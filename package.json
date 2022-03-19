@@ -1,6 +1,6 @@
 {
   "name": "qcr-sites-shared",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Shared development tools for QCR-branded websites",
   "private": true,
   "main": "lib/index.js",
@@ -8,7 +8,8 @@
   "scripts": {
     "build": "npm run build_assets && tsc -p src/ && cp src/styles/*.css lib/styles/",
     "build_assets": "npx @svgr/cli --no-index --out-dir src/assets/ assets/",
-    "dev": "next dev",
+    "build_site": "npm run build && next build",
+    "dev": "npm run build && next dev",
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,21 +29,27 @@
   "devDependencies": {
     "@svgr/cli": "^6.2.1",
     "@svgr/webpack": "^6.2.1",
+    "@types/glob": "^7.2.0",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.12",
     "eslint": "^8.10.0",
     "eslint-config-next": "^12.1.0",
     "prettier": "^2.5.1",
-    "typescript": "^4.6.2"
+    "typescript": "^4.6.2",
+    "webpack": "^5.70.0"
   },
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "@mdx-js/mdx": "^2.1.0",
     "@mui/material": "^5.4.4",
+    "github-markdown-css": "^5.1.0",
+    "handlebars": "^4.7.7",
     "next": "^12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-multi-carousel": "^2.8.0"
+    "react-multi-carousel": "^2.8.0",
+    "remark-gfm": "^3.0.1"
   }
 }

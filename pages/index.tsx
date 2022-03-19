@@ -19,10 +19,10 @@ import {
 import DownloadIcon from '!@svgr/webpack!/public/icon_download.svg';
 import {useState} from 'react';
 
-const URL = 'https://research.qut.edu.au/qcr';
+const QCR_URL = 'https://research.qut.edu.au/qcr';
 
 const CONTENT_CARDS = Array.from({length: 10}, (_, i) => i + 1).map((i) => ({
-  linkUrl: URL,
+  linkUrl: QCR_URL,
   primaryText: `Content card ${i}`,
   ...(i < 5 ? {secondaryText: 'extra text'} : {}),
   mediaUrls: i % 5 ? [`/dummy_${i % 5}.jpg`] : undefined,
@@ -31,18 +31,20 @@ const CONTENT_CARDS = Array.from({length: 10}, (_, i) => i + 1).map((i) => ({
 const DIALOG_ITEMS = Array.from({length: 5}, (_, i) => i + 1).map((i) => ({
   primaryText: `Primary text ${i}`,
   secondaryText: `extra ${i}`,
-  linkUrl: URL,
+  linkUrl: QCR_URL,
 }));
 
 const FEATURE_CARDS = Array.from({length: 5}, (_, i) => i).map((i) => ({
-  linkUrl: URL,
+  linkUrl: QCR_URL,
   text: i ? `Image card` : `Video card`,
   mediaUrls: i ? [`/dummy_${i}.jpg`] : ['/panda.mp4'],
 }));
 
-const TABS = [
+export const TABS = [
   {text: 'Home', target: '/'},
-  {text: 'External', target: URL},
+  {text: 'Markdown', target: '/markdown'},
+  {text: 'Loaders', target: '/loaders'},
+  {text: 'External', target: QCR_URL},
 ];
 
 const StyledCards = styled('div')({
@@ -56,48 +58,38 @@ export default function HomePage() {
   return (
     <QcrPage>
       <QcrTopBar title="Sample homepage" tabs={TABS} selected={0} />
-      <QcrTitle variant="h3" color="primary">
-        QCR title
-      </QcrTitle>
       <QcrBody>
         <QcrText>
+          <QcrTitle>QCR title</QcrTitle>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             commodi officiis aperiam odit qui eius reiciendis ipsum laborum
             provident accusantium cum, sint facere aspernatur repellat a ad
             atque repellendus consequatur.
           </p>
-          <QcrTitle variant="h4" color="primary">
-            Cards
-          </QcrTitle>
-          <QcrTitle variant="h5" color="primary">
-            Feature cards
-          </QcrTitle>
+          <QcrTitle variant="h4">Cards</QcrTitle>
+          <QcrTitle variant="h5">Feature cards</QcrTitle>
           <StyledCards>
             {FEATURE_CARDS.map((f, i) => (
               <QcrFeatureCard key={i} {...f} />
             ))}
           </StyledCards>
-          <QcrTitle variant="h5" color="primary">
-            Content cards
-          </QcrTitle>
+          <QcrTitle variant="h5">Content cards</QcrTitle>
           <StyledCards>
             {CONTENT_CARDS.map((c, i) => (
               <QcrContentCard key={i} {...c} />
             ))}
           </StyledCards>
-          <QcrTitle variant="h5" color="primary">
+          <QcrTitle variant="h5">
             A carousel of content cards
             <QcrCardCarousel cardsData={CONTENT_CARDS} itemsFactor={0.5} />
           </QcrTitle>
-          <QcrTitle variant="h4" color="primary">
-            Buttons and dialogs
-          </QcrTitle>
-          <QcrFocusButton url={URL} text="QCR homepage" newTab />
+          <QcrTitle variant="h4">Buttons and dialogs</QcrTitle>
+          <QcrFocusButton url={QCR_URL} text="QCR homepage" newTab />
           <br />
           <br />
           <QcrFocusButton
-            url={URL}
+            url={QCR_URL}
             text="With icon"
             newTab
             icon={<DownloadIcon />}

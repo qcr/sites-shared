@@ -52,6 +52,7 @@ export const QcrPage = styled('div')({
 export const QcrTitle = styled(Typography)({
   marginTop: '48px',
 });
+QcrTitle.defaultProps = {variant: 'h3', color: 'primary'};
 
 export const QcrText = styled(Typography)({
   margin: '0 auto',
@@ -74,7 +75,14 @@ export const QcrMarkdown = styled(QcrText)({
       paddingRight: '0.3em',
     },
   },
+  width: '100%',
 });
+QcrMarkdown.defaultProps = {
+  className: 'markdown-body',
+  variant: 'body1',
+  // @ts-ignore
+  component: 'div',
+};
 
 export const QcrMissingContentBox = styled(QcrFocusBox)({
   backgroundColor: 'lightsalmon',

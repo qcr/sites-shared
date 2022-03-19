@@ -4,8 +4,8 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "jsx": "react",
-    "module": "CommonJS",
+    "jsx": "react-jsx",
+    "module": "commonjs",  // Because webpack loaders don't work in ES6.....
     "moduleResolution": "node",
     "outDir": "../lib",
     "skipLibCheck": true,
