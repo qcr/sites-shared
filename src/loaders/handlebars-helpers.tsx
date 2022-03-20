@@ -3,7 +3,7 @@ import reactToString from 'react-element-to-jsx-string';
 
 export type ComponentDeclarations = {
   [key: string]: {
-    substitute: (ctx: any) => React.ReactElement;
+    substitute: (data: any, key: string | number) => React.ReactElement;
     render: (props: {[key: string]: any}) => React.ReactElement;
   };
 };
@@ -38,7 +38,12 @@ export function componentClosure(components: ComponentDeclarations) {
       throw ComponentError(args[1], opts);
     }
     return new Handlebars.SafeString(
-      reactToString(components[args[1]].substitute(args[0]))
+      reactToString(
+        components[args[1]].substitute(
+          args[0],
+          opts.data.key || opts.data.index
+        )
+      )
     );
   };
 }
