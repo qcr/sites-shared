@@ -7,7 +7,19 @@ import {
   TableRow,
 } from '@mui/material';
 
-export default function DemoComponent() {
+interface DemoRobotTableProps {
+  name: string;
+  description: string;
+  image: string;
+  features: string[];
+}
+
+export default function DemoRobotTable({
+  name,
+  description,
+  image,
+  features,
+}: DemoRobotTableProps) {
   return (
     <TableContainer>
       <Table sx={{width: '100% !important', display: 'table !important'}}>
@@ -19,26 +31,25 @@ export default function DemoComponent() {
         <TableHead>
           <TableRow>
             <TableCell align="center" colSpan={3}>
-              Husky
+              {name}
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
             <TableCell>Description</TableCell>
-            <TableCell>Husky is a robot that does stuff</TableCell>
+            <TableCell>{description}</TableCell>
             <TableCell rowSpan={2}>
-              <img src="/example.jpg" />
+              <img src={image} />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Features</TableCell>
             <TableCell>
               <ul>
-                <li>Mobile navigation</li>
-                <li>RGBD camera</li>
-                <li>Laser</li>
-                <li>Outdoor operation</li>
+                {features.map((f, i) => (
+                  <li key={i}>{f}</li>
+                ))}
               </ul>
             </TableCell>
           </TableRow>

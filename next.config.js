@@ -5,11 +5,28 @@ module.exports = {
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.alias['qcr-sites-shared'] = path.resolve(__dirname, 'src/');
+    config.resolve.alias['handlebars'] = 'handlebars/dist/handlebars';
     config.module.rules.push(
       ...[
         {
           resourceQuery: /raw/,
           type: 'asset/source',
+        },
+        {
+          resourceQuery: /full/,
+          use: [
+            {
+              loader: './lib/loaders/markdown',
+            },
+            {
+              loader: './lib/loaders/handlebars',
+              options: {
+                components: 'demo_assets/custom_components',
+                data: 'demo_assets/example.yaml',
+                helpers: 'lib/loaders/handlebars-helpers',
+              },
+            },
+          ],
         },
         {
           test: /\.files$/,
@@ -21,12 +38,14 @@ module.exports = {
         },
         {
           test: /\.mdx?$/,
+          resourceQuery: {not: [/full/]},
           loader: './lib/loaders/markdown',
         },
         {
           test: /\.handlebars$/,
           loader: './lib/loaders/handlebars',
           options: {
+            components: 'demo_assets/custom_components',
             data: 'demo_assets/example.yaml',
             helpers: 'lib/loaders/handlebars-helpers',
           },

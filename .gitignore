@@ -4,5 +4,8 @@
 node_modules
 /lib
 /src/assets
+/demo_assets/*.js
+/demo_assets/*.d.ts
+/demo_assets/*.d.ts.map
 
 /.next/

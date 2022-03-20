@@ -6,4 +6,10 @@ Here's processing of a list:
 {{/each}}
 
 Here's using a helper to transform a multi-line string into a list:
-{{list my_field.multiline}}
+{{!-- {{list my_field.multiline}} --}}
+
+Here's inserting a custom component, backed by our data:
+{{component a_list.[0] "Button"}}
+
+Two:
+{{component a_list.[0] "Typography"}}

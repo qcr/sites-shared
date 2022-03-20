@@ -52,6 +52,10 @@ export default function LoadersPage() {
       <QcrBody>
         <QcrText>
           <QcrTitle>Custom data loader demonstration</QcrTitle>
+          <p>
+            This page demonstrates each of our custom loaders, showing the
+            transformation from input to output for a given file.
+          </p>
           {LOADS.map((l, i) => (
             <React.Fragment key={i}>
               <QcrTitle variant="h4">{l.title}</QcrTitle>

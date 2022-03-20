@@ -42,7 +42,7 @@ Yuck. Instead, we can communicate our information much more effectively through 
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material'
 
 <TableContainer>
-   <Table sx={{width: "100% !important", display: "table !important"}}>
+   <Table>
       <colgroup>
          <col width="15%" />
          <col width="35%" />
@@ -71,7 +71,7 @@ import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material'
 
 <TableContainer>
-   <Table sx={{width: "100% !important", display: "table !important"}}>
+   <Table>
       <colgroup>
          <col width="15%" />
          <col width="35%" />
@@ -101,23 +101,21 @@ But our Markdown quickly becomes more code than simple text. We could have less 
 ```
 import RobotTable from './component_demo'
 
-<RobotTable />
+<RobotTable name="Husky" description="Husky is a robot that does stuff" image="/example.jpg" features={["Mobile navigation", "RGBD camera", "Laser", "Outdoor operation"]}/>
 ```
 
 import RobotTable from './component_demo'
 
-<RobotTable />
+<RobotTable name="Husky" description="Husky is a robot that does stuff" image="/example.jpg" features={["Mobile navigation", "RGBD camera", "Laser", "Outdoor operation"]}/>
 
-But this still isn't good enough. It's still JSX, and anything beyond simple examples becomes messy (looping over data, passing data, linking data). Replacing a solution because of obscure syntax (pasting and tweaking raw HTML) with another obscure syntax (JSX) has changed the problem, not addressed it. The problem, being unable to express technical concepts clearly with a simple syntax, still needs us to put the simple syntax atop our MDX.
+But this still isn't good enough. It's still JSX, and anything beyond simple examples becomes messy (looping over data, passing data, linking data). Replacing a solution due to its obscure syntax (pasting and tweaking raw HTML) with another obscure syntax (JSX) has changed the problem, not addressed it. The problem, being unable to express technical concepts clearly with a simple syntax, still needs us to put the simple syntax atop our MDX.
 
 We use a mostly [logic-less](https://dev.to/cocoroutine/truth-about-template-engines-3a7) application of [Handlebars](https://handlebarsjs.com/guide/#what-is-handlebars) to create a simple syntax for inserting complex components. For example, the following:
 
-```
-{{ component <data> <component_name> }}
-```
+<pre><code>&#123;&#123;component demo_robot "DemoRobotTable"&#125;&#125;</code></pre>
 
 Will then turn into:
 
-<RobotTable />
+{{ component demo_robot "DemoRobotTable" }}
 
 The list of components available and what data they expect is documented ... TODO.

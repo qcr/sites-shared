@@ -11,3 +11,12 @@ a_list:
     address: 127.0.0.2
   - robot: Panda
     address: 127.0.0.3
+demo_robot:
+  name: Husky
+  description: Husky is a robot that does stuff
+  image: /example.jpg
+  features:
+    - Mobile navigation
+    - RGBD camera
+    - Laser
+    - Outdoor operation
