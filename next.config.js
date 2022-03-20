@@ -23,7 +23,6 @@ module.exports = {
               options: {
                 components: 'demo_assets/custom_components',
                 data: 'demo_assets/example.yaml',
-                helpers: 'lib/loaders/handlebars-helpers',
               },
             },
           ],
@@ -47,7 +46,6 @@ module.exports = {
           options: {
             components: 'demo_assets/custom_components',
             data: 'demo_assets/example.yaml',
-            helpers: 'lib/loaders/handlebars-helpers',
           },
         },
       ]
