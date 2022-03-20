@@ -16,7 +16,17 @@ export const components: ComponentDeclarations = {
   ),
 };
 
-export const helpers: HelperDeclarations = {};
+export const helpers: HelperDeclarations = {
+  csv: (...args: any[]) =>
+    transformHelper(
+      (arg: any) => (arg as string[]).join(', '),
+      'csv',
+      2,
+      ...args
+    ),
+  lowercase: (...args: any[]) =>
+    transformHelper(String.prototype.toLowerCase, 'lowercase', 2, ...args),
+};
 
 export function componentClosure(components: ComponentDeclarations) {
   return (...args: any[]) => {
@@ -30,6 +40,18 @@ export function componentClosure(components: ComponentDeclarations) {
       reactToString(components[args[1]](args[0]))
     );
   };
+}
+
+export function transformHelper(
+  fn: (arg: any) => string,
+  name: string,
+  nargs: number,
+  ...args: any[]
+) {
+  const opts = args[args.length - 1] as HelperOptions;
+  if (args.length !== nargs)
+    throw HelperArgsError(name, nargs, args.length, opts);
+  return fn(args[0]);
 }
 
 export interface HelperError {
