@@ -5,6 +5,7 @@ module.exports = {
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.alias['qcr-sites-shared'] = path.resolve(__dirname, 'src/');
+    config.resolve.alias['handlebars'] = 'handlebars/dist/handlebars';
     config.module.rules.push(
       ...[
         {
