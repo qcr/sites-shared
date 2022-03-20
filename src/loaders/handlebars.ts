@@ -25,6 +25,7 @@ async function asyncLoader(
   const loaderPath = ctx.loaders[ctx.loaderIndex].path;
   const resolveP = promisify(ctx.resolve);
   const opts = ctx.getOptions();
+  const query = new URLSearchParams(ctx.resourceQuery.slice(1));
 
   // Load and apply custom components list
   if (opts.components) {
@@ -66,7 +67,6 @@ async function asyncLoader(
   inst.registerHelper(definedHelpers);
 
   // Load the requested data
-  const query = new URLSearchParams(ctx.resourceQuery.slice(1));
   const d = query.get('data') ? query.get('data') : opts.data;
   let data;
   try {
@@ -77,9 +77,13 @@ async function asyncLoader(
     return;
   }
 
+  // Tweak compile string if we have received a context query
+  const c = query.get('context') ? query.get('context') : opts.context;
+  const hbString = c ? `{{#with ${c}}}\n${input}\n{{/with}}` : input;
+
   // Compile and return a result; erroring as gracefully as possible
   try {
-    const out = inst.compile(input)(data);
+    const out = inst.compile(hbString)(data);
     cb(
       null,
       ctx.loaderIndex == 0 ? `export default ${JSON.stringify(out)}` : out
