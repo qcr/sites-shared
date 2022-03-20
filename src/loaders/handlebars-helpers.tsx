@@ -1,20 +1,16 @@
 import Handlebars, {HelperDeclareSpec, HelperOptions} from 'handlebars';
 import reactToString from 'react-element-to-jsx-string';
 
-import {Button, Typography} from '@mui/material';
-
 export type ComponentDeclarations = {
-  [key: string]: (ctx: any) => React.ReactElement;
+  [key: string]: {
+    substitute: (ctx: any) => React.ReactElement;
+    render: (props: {[key: string]: any}) => React.ReactElement;
+  };
 };
 
 export type HelperDeclarations = HelperDeclareSpec;
 
-export const components: ComponentDeclarations = {
-  Button: (ctx) => <Button>{ctx.title}</Button>,
-  Typography: (ctx) => (
-    <Typography variant={ctx.variant}>{ctx.text}</Typography>
-  ),
-};
+export const components: ComponentDeclarations = {};
 
 export const helpers: HelperDeclarations = {
   csv: (...args: any[]) =>
@@ -42,7 +38,7 @@ export function componentClosure(components: ComponentDeclarations) {
       throw ComponentError(args[1], opts);
     }
     return new Handlebars.SafeString(
-      reactToString(components[args[1]](args[0]))
+      reactToString(components[args[1]].substitute(args[0]))
     );
   };
 }
