@@ -7,19 +7,19 @@ import {
   TableRow,
 } from '@mui/material';
 
-interface DemoComponentProps {
+interface DemoRobotTableProps {
   name: string;
   description: string;
   image: string;
   features: string[];
 }
 
-export default function DemoComponent({
+export default function DemoRobotTable({
   name,
   description,
   image,
   features,
-}: DemoComponentProps) {
+}: DemoRobotTableProps) {
   return (
     <TableContainer>
       <Table sx={{width: '100% !important', display: 'table !important'}}>

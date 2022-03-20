@@ -12,22 +12,10 @@ import {MDXProvider} from '@mdx-js/react';
 
 import {TABS} from './index';
 
-import Md from 'demo_assets/markdown_demo.md?full';
+import customComponents from 'demo_assets/custom_components';
+import {components} from 'qcr-sites-shared/loaders/handlebars-helpers';
 
-import DemoComponent from 'demo_assets/component_demo';
-
-import {Button} from '@mui/material';
-
-const cs = {
-  DemoComponent: (props) => (
-    <DemoComponent
-      name={props.name}
-      description={props.description}
-      image={props.image}
-      features={props.features}
-    />
-  ),
-};
+import Mdx from 'demo_assets/markdown_demo.md?full';
 
 export default function MarkdownPage() {
   return (
@@ -37,7 +25,7 @@ export default function MarkdownPage() {
         <QcrText>
           <QcrTitle>Demonstration of markdown capabilities</QcrTitle>
           <QcrMarkdown>
-            <Md components={cs} />
+            <Mdx components={{...components, ...customComponents}} />
           </QcrMarkdown>
         </QcrText>
       </QcrBody>
