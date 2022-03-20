@@ -43,7 +43,7 @@ async function asyncLoader(
     const x = await compile(input, {
       remarkPlugins: [(await remarkGfm).default],
     });
-    cb(null, String(x));
+    cb(null, x.toString());
   } catch (e) {
     cb(
       Error(

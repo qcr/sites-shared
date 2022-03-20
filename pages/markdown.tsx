@@ -8,9 +8,26 @@ import {
   QcrTopBar,
 } from 'qcr-sites-shared';
 
+import {MDXProvider} from '@mdx-js/react';
+
 import {TABS} from './index';
 
-import md from 'demo_assets/markdown_demo.md';
+import Md from 'demo_assets/markdown_demo.md?full';
+
+import DemoComponent from 'demo_assets/component_demo';
+
+import {Button} from '@mui/material';
+
+const cs = {
+  DemoComponent: (props) => (
+    <DemoComponent
+      name={props.name}
+      description={props.description}
+      image={props.image}
+      features={props.features}
+    />
+  ),
+};
 
 export default function MarkdownPage() {
   return (
@@ -19,7 +36,9 @@ export default function MarkdownPage() {
       <QcrBody>
         <QcrText>
           <QcrTitle>Demonstration of markdown capabilities</QcrTitle>
-          <QcrMarkdown>{md({})}</QcrMarkdown>
+          <QcrMarkdown>
+            <Md components={cs} />
+          </QcrMarkdown>
         </QcrText>
       </QcrBody>
       <QcrBottomBar />

@@ -1,9 +1,9 @@
 import {ComponentDeclarations} from 'lib/loaders/handlebars-helpers';
 
-import RobotTable from './component_demo';
+import DemoComponent from './component_demo';
 
 const components: ComponentDeclarations = {
-  DemoRobotTable: (ctx: any) => <RobotTable {...ctx} />,
+  DemoRobotTable: (ctx: any) => <DemoComponent {...ctx} />,
 };
 
 export default components;
