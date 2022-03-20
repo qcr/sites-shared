@@ -3,7 +3,7 @@ import reactToString from 'react-element-to-jsx-string';
 
 export type ComponentDeclarations = {
   [key: string]: {
-    substitute: (data: any, key: string | number) => React.ReactElement;
+    substitute: (data: any, key: string) => React.ReactElement;
     render: (props: {[key: string]: any}) => React.ReactElement;
   };
 };
@@ -41,7 +41,7 @@ export function componentClosure(components: ComponentDeclarations) {
       reactToString(
         components[args[1]].substitute(
           args[0],
-          opts.data.key || opts.data.index
+          opts.data.key || opts.data.index.toString()
         )
       )
     );
