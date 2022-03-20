@@ -25,7 +25,12 @@ export const helpers: HelperDeclarations = {
       ...args
     ),
   lowercase: (...args: any[]) =>
-    transformHelper(String.prototype.toLowerCase, 'lowercase', 2, ...args),
+    transformHelper(
+      (arg: any) => (arg as string).toLowerCase(),
+      'lowercase',
+      2,
+      ...args
+    ),
 };
 
 export function componentClosure(components: ComponentDeclarations) {
