@@ -5,7 +5,7 @@ import {AppBar, Tab, Tabs, styled, Typography} from '@mui/material';
 
 import {qcr_mqs} from '../styles/components';
 
-import QcrLogo from '../assets/QcrLogoLight.js';
+import QutLogo from '../assets/QutLogoLight';
 
 interface TopBarProps {
   selected?: number | false;
@@ -25,14 +25,23 @@ const StyledHome = styled('div')({
   display: 'flex',
 });
 
-const StyledLogo = styled(QcrLogo)({
-  width: '100px',
-  margin: '0px 6px',
+const StyledLogo = styled(QutLogo)({
+  height: '50px',
+  width: '50px',
+  margin: '12px 6px',
   cursor: 'pointer',
   [qcr_mqs('tablet')]: {
-    width: '150px',
+    width: '75px',
   },
 });
+
+const StyledLogoTitle = styled(Typography)({
+  fontSize: '1.15rem',
+  lineHeight: '1.2',
+  marginTop: '-4px',
+  whiteSpace: 'pre',
+});
+StyledLogoTitle.defaultProps = {variant: 'h6'};
 
 const StyledRow = styled('div')({
   alignItems: 'center',
@@ -63,13 +72,19 @@ const StyledTabs = styled(Tabs)({
 
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
+  borderLeft: `2px solid ${theme.palette.primary.contrastText}`,
+  fontWeight: '900',
   height: 'fit-content',
-  marginLeft: '12px',
+  marginLeft: '30px',
   marginRight: '12px',
+  paddingBottom: '8px',
+  paddingLeft: '30px',
+  paddingTop: '8px',
   textAlign: 'center',
   textTransform: 'capitalize',
   whiteSpace: 'pre-line',
 }));
+StyledTitle.defaultProps = {variant: 'h6'};
 
 export default function TopBar({title, tabs, selected = false}: TopBarProps) {
   return (
@@ -82,11 +97,8 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
                 <StyledLogo />
               </a>
             </Link>
-            {title && (
-              <StyledTitle variant="h5">
-                {title.replace(/ /g, '\n')}
-              </StyledTitle>
-            )}
+            <StyledLogoTitle>Centre for{'\n'}Robotics</StyledLogoTitle>
+            {title && <StyledTitle>{title}</StyledTitle>}
           </StyledHome>
           {tabs && (
             <StyledTabs
