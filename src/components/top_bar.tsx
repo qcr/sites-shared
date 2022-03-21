@@ -5,7 +5,7 @@ import {AppBar, Tab, Tabs, styled, Typography} from '@mui/material';
 
 import {qcr_mqs} from '../styles/components';
 
-import QcrLogo from '../assets/QcrLogoLight.js';
+import QutLogo from '../assets/QutLogoLight';
 
 interface TopBarProps {
   selected?: number | false;
@@ -20,19 +20,34 @@ const StyledBar = styled(AppBar)({
   alignItems: 'center',
 });
 
+const StyledDivider = styled('div')(({theme}) => ({
+  border: `1px solid ${theme.palette.primary.contrastText}`,
+  height: '40px',
+  margin: '12px 36px',
+}));
+
 const StyledHome = styled('div')({
   alignItems: 'center',
   display: 'flex',
 });
 
-const StyledLogo = styled(QcrLogo)({
-  width: '100px',
-  margin: '0px 6px',
+const StyledLogo = styled(QutLogo)({
+  height: '50px',
+  width: '50px',
+  margin: '12px 6px',
   cursor: 'pointer',
   [qcr_mqs('tablet')]: {
-    width: '150px',
+    width: '75px',
   },
 });
+
+const StyledLogoTitle = styled(Typography)({
+  fontSize: '1.15rem',
+  lineHeight: '1.2',
+  paddingTop: '14px',
+  whiteSpace: 'pre',
+});
+StyledLogoTitle.defaultProps = {variant: 'h6'};
 
 const StyledRow = styled('div')({
   alignItems: 'center',
@@ -45,9 +60,9 @@ const StyledRow = styled('div')({
 });
 
 const StyledSpace = styled('div')({
-  height: '128px',
+  height: '10i0px',
   [qcr_mqs('tablet')]: {
-    height: '92px',
+    height: '80px',
   },
 });
 
@@ -63,13 +78,13 @@ const StyledTabs = styled(Tabs)({
 
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
+  fontWeight: '900',
   height: 'fit-content',
-  marginLeft: '12px',
-  marginRight: '12px',
   textAlign: 'center',
   textTransform: 'capitalize',
   whiteSpace: 'pre-line',
 }));
+StyledTitle.defaultProps = {variant: 'h6'};
 
 export default function TopBar({title, tabs, selected = false}: TopBarProps) {
   return (
@@ -77,15 +92,21 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
       <StyledBar>
         <StyledRow>
           <StyledHome>
-            <Link href="/" passHref>
-              <a>
+            <Link href="https://research.qut.edu.au/qcr">
+              <a style={{display: 'flex', textDecoration: 'none'}}>
                 <StyledLogo />
+                <StyledLogoTitle>Centre for{'\n'}Robotics</StyledLogoTitle>
               </a>
             </Link>
             {title && (
-              <StyledTitle variant="h5">
-                {title.replace(/ /g, '\n')}
-              </StyledTitle>
+              <>
+                <StyledDivider />
+                <Link href="/">
+                  <a style={{textDecoration: 'none'}}>
+                    <StyledTitle>{title}</StyledTitle>
+                  </a>
+                </Link>
+              </>
             )}
           </StyledHome>
           {tabs && (
