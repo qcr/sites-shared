@@ -20,6 +20,12 @@ const StyledBar = styled(AppBar)({
   alignItems: 'center',
 });
 
+const StyledDivider = styled('div')(({theme}) => ({
+  border: `1px solid ${theme.palette.primary.contrastText}`,
+  height: '40px',
+  margin: '12px 36px',
+}));
+
 const StyledHome = styled('div')({
   alignItems: 'center',
   display: 'flex',
@@ -38,7 +44,7 @@ const StyledLogo = styled(QutLogo)({
 const StyledLogoTitle = styled(Typography)({
   fontSize: '1.15rem',
   lineHeight: '1.2',
-  marginTop: '-4px',
+  paddingTop: '14px',
   whiteSpace: 'pre',
 });
 StyledLogoTitle.defaultProps = {variant: 'h6'};
@@ -54,9 +60,9 @@ const StyledRow = styled('div')({
 });
 
 const StyledSpace = styled('div')({
-  height: '128px',
+  height: '10i0px',
   [qcr_mqs('tablet')]: {
-    height: '92px',
+    height: '80px',
   },
 });
 
@@ -72,14 +78,8 @@ const StyledTabs = styled(Tabs)({
 
 const StyledTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
-  borderLeft: `2px solid ${theme.palette.primary.contrastText}`,
   fontWeight: '900',
   height: 'fit-content',
-  marginLeft: '30px',
-  marginRight: '12px',
-  paddingBottom: '8px',
-  paddingLeft: '30px',
-  paddingTop: '8px',
   textAlign: 'center',
   textTransform: 'capitalize',
   whiteSpace: 'pre-line',
@@ -92,13 +92,22 @@ export default function TopBar({title, tabs, selected = false}: TopBarProps) {
       <StyledBar>
         <StyledRow>
           <StyledHome>
-            <Link href="/" passHref>
-              <a>
+            <Link href="https://research.qut.edu.au/qcr">
+              <a style={{display: 'flex', textDecoration: 'none'}}>
                 <StyledLogo />
+                <StyledLogoTitle>Centre for{'\n'}Robotics</StyledLogoTitle>
               </a>
             </Link>
-            <StyledLogoTitle>Centre for{'\n'}Robotics</StyledLogoTitle>
-            {title && <StyledTitle>{title}</StyledTitle>}
+            {title && (
+              <>
+                <StyledDivider />
+                <Link href="/">
+                  <a style={{textDecoration: 'none'}}>
+                    <StyledTitle>{title}</StyledTitle>
+                  </a>
+                </Link>
+              </>
+            )}
           </StyledHome>
           {tabs && (
             <StyledTabs
