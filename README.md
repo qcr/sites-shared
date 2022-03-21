@@ -18,7 +18,7 @@ It includes:
 - some sensible default global CSS styles
 - complete demo page for exploring how to use the components
 
-## Playing with the components in a live demo
+## Playing with the components in a live local demo
 
 Make sure you have the latest LTS of NodeJs installed (see [guide below](#installing-nodejs-on-ubuntu)).
 
