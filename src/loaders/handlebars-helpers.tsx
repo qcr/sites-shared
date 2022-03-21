@@ -53,7 +53,7 @@ export function componentClosure(components: ComponentDeclarations) {
             ? opts.data.key
             : opts.data.index !== undefined
             ? opts.data.index.toString()
-            : JSON.stringify(args[0])
+            : undefined // Key can be blank, that means we're not in a list!
         )
       )
     );
