@@ -41,7 +41,11 @@ export function componentClosure(components: ComponentDeclarations) {
       reactToString(
         components[args[1]].substitute(
           args[0],
-          opts.data.key || opts.data.index.toString()
+          opts.data.key !== undefined
+            ? opts.data.key
+            : opts.data.index !== undefined
+            ? opts.data.index.toString()
+            : Math.random().toString(36).replace(/0\.0*/, '')
         )
       )
     );
