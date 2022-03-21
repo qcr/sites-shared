@@ -1,10 +1,18 @@
 import Handlebars, {HelperDeclareSpec, HelperOptions} from 'handlebars';
 import reactToString from 'react-element-to-jsx-string';
 
+export type ComponentSubstitution = (
+  data: any,
+  key: string
+) => React.ReactElement;
+export type ComponentRendering = (props: {
+  [key: string]: any;
+}) => React.ReactElement;
+
 export type ComponentDeclarations = {
   [key: string]: {
-    substitute: (data: any, key: string) => React.ReactElement;
-    render: (props: {[key: string]: any}) => React.ReactElement;
+    substitute: ComponentSubstitution;
+    render: ComponentRendering;
   };
 };
 
