@@ -2,14 +2,20 @@ This is some templated {{my_field.some_data}} text, using the data in example.ya
 
 Here's processing of a list:
 {{#each a_list}}
-- {{this.robot}} is at {{this.address}}
+  - {{this.robot}} is at {{this.address}}
 {{/each}}
 
-Here's using a helper to transform a multi-line string into a list:
-{{!-- {{list my_field.multiline}} --}}
+Let's start with a robot's name:
+
+{{ a_list.[0].robot }}
+
+From that we can use a helper to get the name in lowercase:
+
+{{ lowercase a_list.[0].robot }}
+
+And here's another helper converting a list of fields into comma separated values:
+
+{{ csv demo_robot.features }}
 
 Here's inserting a custom component, backed by our data:
-{{component a_list.[0] "Button"}}
-
-Two:
-{{component a_list.[0] "Typography"}}
+{{component demo_robot "DemoRobotTable" }}

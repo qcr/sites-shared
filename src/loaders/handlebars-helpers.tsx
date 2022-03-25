@@ -1,10 +1,18 @@
 import Handlebars, {HelperDeclareSpec, HelperOptions} from 'handlebars';
 import reactToString from 'react-element-to-jsx-string';
 
+export type ComponentSubstitution = (
+  data: any,
+  key: string
+) => React.ReactElement;
+export type ComponentRendering = (props: {
+  [key: string]: any;
+}) => React.ReactElement;
+
 export type ComponentDeclarations = {
   [key: string]: {
-    substitute: (data: any, key: string) => React.ReactElement;
-    render: (props: {[key: string]: any}) => React.ReactElement;
+    substitute: ComponentSubstitution;
+    render: ComponentRendering;
   };
 };
 
@@ -45,7 +53,7 @@ export function componentClosure(components: ComponentDeclarations) {
             ? opts.data.key
             : opts.data.index !== undefined
             ? opts.data.index.toString()
-            : Math.random().toString(36).replace(/0\.0*/, '')
+            : undefined // Key can be blank, that means we're not in a list!
         )
       )
     );
