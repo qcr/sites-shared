@@ -7,6 +7,7 @@ import ResponsiveMedia from './responsive_media';
 export interface FeatureCardProps {
   linkUrl: string;
   mediaUrls?: string[];
+  subtext?: string;
   text: string;
   textVariant?:
     | 'button'
@@ -66,6 +67,15 @@ const StyledOverlay = styled('div')(({theme}) => ({
   width: '100%',
 }));
 
+const StyledSubtext = styled(Typography)(({theme}) => ({
+  color: theme.palette.primary.contrastText,
+  bottom: '10px',
+  position: 'absolute',
+  textAlign: 'center',
+  width: '100%',
+}));
+StyledSubtext.defaultProps = {variant: 'body1'};
+
 const StyledText = styled(Typography)(({theme}) => ({
   color: theme.palette.primary.contrastText,
   fontWeight: 'bold',
@@ -87,6 +97,7 @@ const StyledTextBox = styled('div')({
 export default function FeatureCard({
   linkUrl,
   mediaUrls,
+  subtext,
   text,
   textVariant = 'h4',
 }: FeatureCardProps) {
@@ -105,6 +116,7 @@ export default function FeatureCard({
             <StyledText variant={textVariant}>
               {text.replace(/ /g, '\n')}
             </StyledText>
+            {subtext && <StyledSubtext>{subtext}</StyledSubtext>}
           </StyledTextBox>
         </StyledClickable>
       </Link>
