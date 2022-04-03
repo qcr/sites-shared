@@ -101,7 +101,6 @@ export default function FeatureCard({
   text,
   textVariant = 'h4',
 }: FeatureCardProps) {
-  const t = subtext ? subtext : 'https://qcr.ai';
   const [elevation, setElevation] = useState(ELEVATION_DEFAULT);
   return (
     <StyledCard
@@ -117,7 +116,7 @@ export default function FeatureCard({
             <StyledText variant={textVariant}>
               {text.replace(/ /g, '\n')}
             </StyledText>
-            <StyledSubtext>{t}</StyledSubtext>
+            {subtext && <StyledSubtext>{subtext}</StyledSubtext>}
           </StyledTextBox>
         </StyledClickable>
       </Link>
