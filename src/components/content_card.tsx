@@ -31,7 +31,7 @@ const StyledCard = styled(Card)({
 });
 
 const StyledClickable = styled(CardActionArea)(({theme}) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.primary.contrastText,
   height: '100%',
   position: 'relative',
 }));
