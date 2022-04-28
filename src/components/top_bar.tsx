@@ -60,7 +60,7 @@ const StyledRow = styled('div')({
 });
 
 const StyledSpace = styled('div')({
-  height: '10i0px',
+  height: '100px',
   [qcr_mqs('tablet')]: {
     height: '80px',
   },
