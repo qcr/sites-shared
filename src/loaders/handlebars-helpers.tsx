@@ -16,26 +16,7 @@ export type ComponentDeclarations = {
   };
 };
 
-export type HelperDeclarations = HelperDeclareSpec;
-
 export const components: ComponentDeclarations = {};
-
-export const helpers: HelperDeclarations = {
-  csv: (...args: any[]) =>
-    transformHelper(
-      (arg: any) => (arg as string[]).join(', '),
-      'csv',
-      2,
-      ...args
-    ),
-  lowercase: (...args: any[]) =>
-    transformHelper(
-      (arg: any) => (arg as string).toLowerCase(),
-      'lowercase',
-      2,
-      ...args
-    ),
-};
 
 export function componentClosure(components: ComponentDeclarations) {
   return (...args: any[]) => {

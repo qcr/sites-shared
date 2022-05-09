@@ -7,15 +7,12 @@ import {
   componentClosure,
   ComponentDeclarations,
   components,
-  HelperDeclarations,
   HelperError,
-  helpers,
 } from './handlebars-helpers';
 
 const inst = Handlebars.create();
 
 const definedComponents: ComponentDeclarations = {...components};
-const definedHelpers: HelperDeclarations = {...helpers};
 
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
