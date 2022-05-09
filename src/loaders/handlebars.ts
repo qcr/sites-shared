@@ -1,18 +1,51 @@
-import Handlebars from 'handlebars';
+import Handlebars, {HelperOptions} from 'handlebars';
 import {promisify} from 'util';
+import reactToString from 'react-element-to-jsx-string';
 
 import type * as webpack from 'webpack';
 
-import {
-  ComponentDeclarations,
-  componentHelpers,
-  components,
-} from './handlebars-helpers';
-
 const inst = Handlebars.create();
+
+export type ComponentSubstitution = (
+  data: any,
+  key: string
+) => React.ReactElement;
+
+export type ComponentRendering = (props: {
+  [key: string]: any;
+}) => React.ReactElement;
+
+export type ComponentDeclarations = {
+  [key: string]: {
+    substitute: ComponentSubstitution;
+    render: ComponentRendering;
+  };
+};
 
 const definedComponents: ComponentDeclarations = {...components};
 
+export function componentHelpers(components: ComponentDeclarations) {
+  return Object.fromEntries(
+    Object.entries(components).map(([k, v]) => [
+      k,
+      (...args: any[]) => {
+        const opts = args[args.length - 1] as HelperOptions;
+        return new Handlebars.SafeString(
+          reactToString(
+            v.substitute(
+              args[0],
+              opts.data.key !== undefined
+                ? opts.data.key
+                : opts.data.index !== undefined
+                ? opts.data.index.toString()
+                : undefined // Key can be blank, that means we're not in a list!
+            )
+          )
+        );
+      },
+    ])
+  );
+}
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
   input: string,
