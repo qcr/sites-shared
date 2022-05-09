@@ -42,7 +42,7 @@ export function componentHelpers(components: ComponentDeclarations) {
                 ? opts.data.index.toString()
                 : undefined // Key can be blank, that means we're not in a list!
             )
-          )
+          ).replace(/\n */g, ' ')
         );
       },
     ])
