@@ -27,7 +27,7 @@ print(sys.path)
 But there is a price for Markdown's simplicity. You quickly hit its limits when using it to communicate anything more than simple text. We often then end up forced to do one of the following:
 
 - settle for something really ugly with reduced clarity in communication
-- paste raw HTML code, hope it works, and fiddle around until something our Markdown engine supports
+- paste raw HTML code, hope it works, and fiddle around until we find something our Markdown engine supports
 
 For example, lets try making a table with some details about a robot in pure Markdown:
 
@@ -112,10 +112,16 @@ But this still isn't good enough. It's still JSX, and anything beyond simple exa
 
 We use a mostly [logic-less](https://dev.to/cocoroutine/truth-about-template-engines-3a7) application of [Handlebars](https://handlebarsjs.com/guide/#what-is-handlebars) to create a simple syntax for inserting complex components. For example, the following:
 
-<pre><code>&#123;&#123;component demo_robot "DemoRobotTable"&#125;&#125;</code></pre>
+<pre><code>&#123;&#123;DemoRobotTable demo_robot&#125;&#125;</code></pre>
 
 Will then turn into:
 
-{{ component demo_robot "DemoRobotTable" }}
+{{ DemoRobotTable demo_robot }}
 
 The list of components available and what data they expect is documented ... TODO.
+
+Here's some dummy examples:
+
+List of features: {{ CsvString demo_robot.features }}
+
+Lowercase robot name: {{ Lowercase demo_robot.name }}

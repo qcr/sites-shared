@@ -1,22 +1,53 @@
-import Handlebars from 'handlebars';
+import Handlebars, {HelperOptions} from 'handlebars';
 import {promisify} from 'util';
+import reactToString from 'react-element-to-jsx-string';
 
 import type * as webpack from 'webpack';
 
-import {
-  componentClosure,
-  ComponentDeclarations,
-  components,
-  HelperDeclarations,
-  HelperError,
-  helpers,
-} from './handlebars-helpers';
+import components from '../custom_components';
 
 const inst = Handlebars.create();
 
-const definedComponents: ComponentDeclarations = {...components};
-const definedHelpers: HelperDeclarations = {...helpers};
+export type ComponentSubstitution = (
+  data: any,
+  key: string
+) => React.ReactElement;
 
+export type ComponentRendering = (props: {
+  [key: string]: any;
+}) => React.ReactElement;
+
+export type ComponentDeclarations = {
+  [key: string]: {
+    substitute: ComponentSubstitution;
+    render: ComponentRendering;
+  };
+};
+
+const definedComponents: ComponentDeclarations = {...components};
+
+export function componentHelpers(components: ComponentDeclarations) {
+  return Object.fromEntries(
+    Object.entries(components).map(([k, v]) => [
+      k,
+      (...args: any[]) => {
+        const opts = args[args.length - 1] as HelperOptions;
+        return new Handlebars.SafeString(
+          reactToString(
+            v.substitute(
+              args[0],
+              opts.data.key !== undefined
+                ? opts.data.key
+                : opts.data.index !== undefined
+                ? opts.data.index.toString()
+                : undefined // Key can be blank, that means we're not in a list!
+            )
+          )
+        );
+      },
+    ])
+  );
+}
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
   input: string,
@@ -46,24 +77,25 @@ async function asyncLoader(
       })
     );
   }
-  definedHelpers.component = componentClosure(definedComponents);
+  const definedHelpers = componentHelpers(definedComponents);
 
   // Load and apply custom helpers list
-  if (opts.helpers) {
-    await Promise.all(
-      (typeof opts.helpers === 'string'
-        ? [opts.helpers]
-        : (opts.helpers as string[])
-      ).map(async (h) => {
-        const helpersPath = await resolveP(loaderPath, h);
-        if (typeof helpersPath !== 'string') {
-          cb(Error(`Could not find 'helpers': ${h}`));
-          return;
-        }
-        Object.assign(definedHelpers, (await import(helpersPath)).default);
-      })
-    );
-  }
+  // TODO only add back in custom helpers if custom components isn't sufficient
+  // if (opts.helpers) {
+  //   await Promise.all(
+  //     (typeof opts.helpers === 'string'
+  //       ? [opts.helpers]
+  //       : (opts.helpers as string[])
+  //     ).map(async (h) => {
+  //       const helpersPath = await resolveP(loaderPath, h);
+  //       if (typeof helpersPath !== 'string') {
+  //         cb(Error(`Could not find 'helpers': ${h}`));
+  //         return;
+  //       }
+  //       Object.assign(definedHelpers, (await import(helpersPath)).default);
+  //     })
+  //   );
+  // }
   inst.registerHelper(definedHelpers);
 
   // Load the requested data
@@ -98,7 +130,7 @@ async function asyncLoader(
     //     })\n`
     //   )
     // );
-    const err = e as HelperError;
+    const err = e as Error;
     cb(Error(`${err.name}: ${err.message}`));
   }
 }

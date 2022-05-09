@@ -13,7 +13,7 @@ import {MDXProvider} from '@mdx-js/react';
 import {TABS} from './index';
 
 import customComponents from 'demo_assets/custom_components';
-import {components} from 'qcr-sites-shared/loaders/handlebars-helpers';
+import components from 'qcr-sites-shared/custom_components';
 
 import Mdx from 'demo_assets/markdown_demo.md?full';
 

@@ -2,7 +2,7 @@ This is some templated {{my_field.some_data}} text, using the data in example.ya
 
 Here's processing of a list:
 {{#each a_list}}
-  - {{this.robot}} is at {{this.address}}
+- {{this.robot}} is at {{this.address}}
 {{/each}}
 
 Let's start with a robot's name:
@@ -11,11 +11,11 @@ Let's start with a robot's name:
 
 From that we can use a helper to get the name in lowercase:
 
-{{ lowercase a_list.[0].robot }}
+{{Lowercase a_list.[0].robot}}
 
-And here's another helper converting a list of fields into comma separated values:
+And here's another example converting a list of fields into a CSV string:
 
-{{ csv demo_robot.features }}
+{{CsvString demo_robot.features}}
 
 Here's inserting a custom component, backed by our data:
-{{component demo_robot "DemoRobotTable" }}
+{{DemoRobotTable demo_robot }}

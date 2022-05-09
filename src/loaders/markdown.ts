@@ -38,6 +38,10 @@ async function asyncLoader(
   input: string,
   cb: (err: Error | null, result?: string) => void
 ) {
+  // Perform any text manipulations necessary for standard MD support
+  input = input.replace(/<!--/g, '{/*').replace(/-->/g, '*/}');
+
+  // Compile the text using MDX
   const compile = (await mdx).compile;
   try {
     const x = await compile(input, {
