@@ -11,11 +11,6 @@ Let's start with a robot's name:
 
 From that we can use a helper to get the name in lowercase:
 
-{{ lowercase a_list.[0].robot }}
-
-And here's another helper converting a list of fields into comma separated values:
-
-{{ csv demo_robot.features }}
 
 Here's inserting a custom component, backed by our data:
-{{component demo_robot "DemoRobotTable" }}
+{{DemoRobotTable demo_robot }}

@@ -95,7 +95,7 @@ async function asyncLoader(
     //     })\n`
     //   )
     // );
-    const err = e as HelperError;
+    const err = e as Error;
     cb(Error(`${err.name}: ${err.message}`));
   }
 }
