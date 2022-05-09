@@ -42,24 +42,25 @@ async function asyncLoader(
       })
     );
   }
-  definedHelpers.component = componentClosure(definedComponents);
+  const definedHelpers = componentHelpers(definedComponents);
 
   // Load and apply custom helpers list
-  if (opts.helpers) {
-    await Promise.all(
-      (typeof opts.helpers === 'string'
-        ? [opts.helpers]
-        : (opts.helpers as string[])
-      ).map(async (h) => {
-        const helpersPath = await resolveP(loaderPath, h);
-        if (typeof helpersPath !== 'string') {
-          cb(Error(`Could not find 'helpers': ${h}`));
-          return;
-        }
-        Object.assign(definedHelpers, (await import(helpersPath)).default);
-      })
-    );
-  }
+  // TODO only add back in custom helpers if custom components isn't sufficient
+  // if (opts.helpers) {
+  //   await Promise.all(
+  //     (typeof opts.helpers === 'string'
+  //       ? [opts.helpers]
+  //       : (opts.helpers as string[])
+  //     ).map(async (h) => {
+  //       const helpersPath = await resolveP(loaderPath, h);
+  //       if (typeof helpersPath !== 'string') {
+  //         cb(Error(`Could not find 'helpers': ${h}`));
+  //         return;
+  //       }
+  //       Object.assign(definedHelpers, (await import(helpersPath)).default);
+  //     })
+  //   );
+  // }
   inst.registerHelper(definedHelpers);
 
   // Load the requested data
