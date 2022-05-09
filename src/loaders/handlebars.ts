@@ -4,10 +4,9 @@ import {promisify} from 'util';
 import type * as webpack from 'webpack';
 
 import {
-  componentClosure,
   ComponentDeclarations,
+  componentHelpers,
   components,
-  HelperError,
 } from './handlebars-helpers';
 
 const inst = Handlebars.create();
