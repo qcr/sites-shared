@@ -4,6 +4,8 @@ import reactToString from 'react-element-to-jsx-string';
 
 import type * as webpack from 'webpack';
 
+import components from '../custom_components';
+
 const inst = Handlebars.create();
 
 export type ComponentSubstitution = (
