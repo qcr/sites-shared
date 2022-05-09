@@ -4,7 +4,7 @@ import DemoRobotTable from './component_demo';
 
 const components: ComponentDeclarations = {
   DemoRobotTable: {
-    substitute: (ctx) => <DemoRobotTable {...ctx} />,
+    substitute: (data) => <DemoRobotTable {...data} />,
     render: (props) => <DemoRobotTable {...(props as any)} />,
   },
 };

@@ -119,3 +119,9 @@ Will then turn into:
 {{ DemoRobotTable demo_robot }}
 
 The list of components available and what data they expect is documented ... TODO.
+
+Here's some dummy examples:
+
+List of features: {{ CsvString demo_robot.features }}
+
+Lowercase robot name: {{ Lowercase demo_robot.name }}
