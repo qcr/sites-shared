@@ -1,4 +1,4 @@
-import {ComponentDeclarations} from 'lib/loaders/handlebars-helpers';
+import {ComponentDeclarations} from 'lib/loaders/handlebars';
 
 import DemoRobotTable from './component_demo';
 
