@@ -9,7 +9,7 @@ import components from '../custom_components';
 const inst = Handlebars.create();
 
 export type ComponentSubstitution = (
-  data: any,
+  args: any[],
   key: string
 ) => React.ReactElement;
 
@@ -35,7 +35,7 @@ export function componentHelpers(components: ComponentDeclarations) {
         return new Handlebars.SafeString(
           reactToString(
             v.substitute(
-              args[0],
+              args.slice(0, -1),
               opts.data.key !== undefined
                 ? opts.data.key
                 : opts.data.index !== undefined

@@ -5,11 +5,11 @@ import Lowercase from './lowercase';
 
 const components: ComponentDeclarations = {
   CsvString: {
-    substitute: (data) => <CsvString strings={data} />,
+    substitute: (args) => <CsvString strings={args[0]} />,
     render: (props) => <CsvString {...(props as any)} />,
   },
   Lowercase: {
-    substitute: (data) => <Lowercase string={data} />,
+    substitute: (args) => <Lowercase string={args[0]} />,
     render: (props) => <Lowercase {...(props as any)} />,
   },
 };
