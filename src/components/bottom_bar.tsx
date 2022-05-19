@@ -2,6 +2,10 @@ import React from 'react';
 
 import {Typography, styled} from '@mui/material';
 
+interface BottomBarProps {
+  className?: string;
+}
+
 const StyledBar = styled('div')(({theme}) => ({
   backgroundColor: theme.palette.primary.main,
   display: 'flex',
@@ -25,9 +29,9 @@ const StyledText = styled(Typography)({
   fontSize: '0.85rem',
 });
 
-export default function BottomBar() {
+export default function BottomBar({className}: BottomBarProps) {
   return (
-    <StyledBar>
+    <StyledBar className={className}>
       <StyledContent>
         <StyledText variant="body1">CRICOS No. 00213J</StyledText>
       </StyledContent>
