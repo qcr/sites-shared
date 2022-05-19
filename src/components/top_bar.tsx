@@ -8,6 +8,7 @@ import {qcr_mqs} from '../styles/components';
 import QutLogo from '../assets/QutLogoLight';
 
 interface TopBarProps {
+  className?: string;
   selected?: number | false;
   title?: string;
   tabs?: {
@@ -86,10 +87,15 @@ const StyledTitle = styled(Typography)(({theme}) => ({
 }));
 StyledTitle.defaultProps = {variant: 'h6'};
 
-export default function TopBar({title, tabs, selected = false}: TopBarProps) {
+export default function TopBar({
+  className,
+  title,
+  tabs,
+  selected = false,
+}: TopBarProps) {
   return (
     <>
-      <StyledBar>
+      <StyledBar className={className}>
         <StyledRow>
           <StyledHome>
             <Link href="https://research.qut.edu.au/qcr">
