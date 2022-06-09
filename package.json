@@ -1,6 +1,6 @@
 {
   "name": "qcr-sites-shared",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Shared development tools for QCR-branded websites",
   "private": true,
   "main": "lib/index.js",
