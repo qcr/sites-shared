@@ -29,6 +29,9 @@ import type * as webpack from 'webpack';
 const mdx = Function('return import("@mdx-js/mdx")')() as Promise<
   typeof import('@mdx-js/mdx')
 >;
+const rehypeMathjax = Function('return import("rehype-mathjax")')() as Promise<
+  typeof import('rehype-mathjax')
+>;
 const remarkGfm = Function('return import("remark-gfm")')() as Promise<
   typeof import('remark-gfm')
 >;
@@ -49,6 +52,7 @@ async function asyncLoader(
   try {
     const x = await compile(input, {
       remarkPlugins: [(await remarkGfm).default, (await remarkMath).default],
+      rehypePlugins: [(await rehypeMathjax).default],
     });
     cb(null, x.toString());
   } catch (e) {
