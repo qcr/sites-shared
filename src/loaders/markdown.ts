@@ -32,6 +32,9 @@ const mdx = Function('return import("@mdx-js/mdx")')() as Promise<
 const remarkGfm = Function('return import("remark-gfm")')() as Promise<
   typeof import('remark-gfm')
 >;
+const remarkMath = Function('return import("remark-math")')() as Promise<
+  typeof import('remark-math')
+>;
 
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
@@ -45,7 +48,7 @@ async function asyncLoader(
   const compile = (await mdx).compile;
   try {
     const x = await compile(input, {
-      remarkPlugins: [(await remarkGfm).default],
+      remarkPlugins: [(await remarkGfm).default, (await remarkMath).default],
     });
     cb(null, x.toString());
   } catch (e) {
