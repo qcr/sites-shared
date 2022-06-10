@@ -1,3 +1,7 @@
+---
+debug: Some value
+---
+
 # Some markdown
 
 With all of your standard syntax:

@@ -19,13 +19,22 @@ import handlebarsRaw from '!!demo_assets/example.handlebars?raw';
 
 import filesLd from 'demo_assets/example.files';
 import yamlLd from 'demo_assets/example.yaml';
-import mdLd from 'demo_assets/example.md';
+import * as mdLd from 'demo_assets/example.md';
 import handlebarsLd from 'demo_assets/example.handlebars';
+
+console.log(Object.entries(mdLd));
 
 const LOADS = [
   ['.files', 'File list loader', filesRaw, filesLd],
   ['.yaml', 'YAML loader', yamlRaw, yamlLd],
-  ['.md', 'Markdown loader', mdRaw, renderToString(mdLd({}))],
+  [
+    '.md',
+    'Markdown loader',
+    mdRaw,
+    `Front matter:\n${Object.entries(mdLd.matter)
+      .map(([k, v]) => `\t${k}:\t${v.toString()}\n`)
+      .join('')}\nHTML:\n${renderToString(mdLd.default({}))}`,
+  ],
   ['.handlebars', 'Handlebars templating loader', handlebarsRaw, handlebarsLd],
 ].map((e) => ({
   ld: e[3],
