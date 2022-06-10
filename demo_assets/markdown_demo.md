@@ -1,28 +1,42 @@
-# What is our Markdown Stack
+## What our Markdown Stack supports
 
-We can still do all the standard basics of [CommonMark](https://commonmark.org/), but we extend it with [MDX](https://mdxjs.com/docs/what-is-mdx/). MDX allows us to add React components to our Markdown, and we'll see why that's useful by the end of this demonstration.
+We start with a renderer supporting the standard basics of [CommonMark](https://commonmark.org/), but extend it to meet our communication needs.
 
-We also enable [GitHub Flavoured Markdown](https://github.github.com/gfm/) through an MDX plugin to keep things as familiar as possible to the GitHub README experience.
+Current list of supported syntax extensions are:
 
-Here's some standard Markdown. With your basics like lists:
+- [GitHub Flavoured Markdown](https://github.github.com/gfm/) through [remark-gfm](https://github.com/remarkjs/remark-gfm)
+- [MathJax](https://www.mathjax.org/) math support through [remark-math and rehype-mathjax](https://github.com/remarkjs/remark-math)
+- YAML front matter through [remark-mdx-frontmatter](https://github.com/remcohaszing/remark-mdx-frontmatter)
+- custom React components through [MDX](https://mdxjs.com/docs/what-is-mdx/).
+- text templating using [HandlebarsJs](https://handlebarsjs.com/).
+
+## Why complicate simple Markdown with all the extra mess?
+
+With MDX and Handlebars text templating we can express powerful, customisable visual structures while still holding onto Markdown's spirit of simplicity. The text below walks through, why we need this and how we realise it.
+
+### What Markdown already has
+
+We all know the standard Markdown basics like lists:
 
 - item one
 - two
 - then three
 
-And numbered:
+And numbered lists:
 
 1. With a
 2. number
 3. and so on
 
-And some code:
+And code blocks:
 
 ```python
 import sys
 
 print(sys.path)
 ```
+
+### Where it all starts to fall down
 
 But there is a price for Markdown's simplicity. You quickly hit its limits when using it to communicate anything more than simple text. We often then end up forced to do one of the following:
 
@@ -35,6 +49,8 @@ For example, lets try making a table with some details about a robot in pure Mar
 | ----------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | Description | Husky is a robot that does stuff                                                                                  | ![Robot](/example.jpg)             |
 | Features    | Mobile navigation, RGBD camera, Laser, Outdoor operation (good luck getting this into a nicely formatted list...) | and can't merge with above cell... |
+
+### JSX components to the rescue... mostly
 
 Yuck. Instead, we can communicate our information much more effectively through a JSX component. We can write it directly in our Markdown:
 
@@ -110,6 +126,8 @@ import RobotTable from './component_demo'
 
 But this still isn't good enough. It's still JSX, and anything beyond simple examples becomes messy (looping over data, passing data, linking data). Replacing a solution due to its obscure syntax (pasting and tweaking raw HTML) with another obscure syntax (JSX) has changed the problem, not addressed it. The problem, being unable to express technical concepts clearly with a simple syntax, still needs us to put the simple syntax atop our MDX.
 
+### Returning to simplicity with HandlebarsJs text templating
+
 We use a mostly [logic-less](https://dev.to/cocoroutine/truth-about-template-engines-3a7) application of [Handlebars](https://handlebarsjs.com/guide/#what-is-handlebars) to create a simple syntax for inserting complex components. For example, the following:
 
 <pre><code>&#123;&#123;DemoRobotTable demo_robot&#125;&#125;</code></pre>
@@ -118,10 +136,4 @@ Will then turn into:
 
 {{ DemoRobotTable demo_robot }}
 
-The list of components available and what data they expect is documented ... TODO.
-
-Here's some dummy examples:
-
-List of features: {{ CsvString demo_robot.features }}
-
-Lowercase robot name: {{ Lowercase demo_robot.name }}
+Now we're back to the Markdown-like simplicity, but with significantly more expressitivity!
