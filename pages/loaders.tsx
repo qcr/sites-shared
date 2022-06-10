@@ -31,8 +31,7 @@ const LOADS = [
     '.md',
     'Markdown loader',
     mdRaw,
-    `Front matter:\n${Object.entries(mdLd)
-      .filter(([k, v]) => k !== 'default')
+    `Front matter:\n${Object.entries(mdLd.matter)
       .map(([k, v]) => `\t${k}:\t${v.toString()}\n`)
       .join('')}\nHTML:\n${renderToString(mdLd.default({}))}`,
   ],

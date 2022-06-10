@@ -59,7 +59,7 @@ async function asyncLoader(
     const x = await compile(input, {
       remarkPlugins: [
         (await remarkFrontmatter).default,
-        (await remarkMdxFrontmatter).remarkMdxFrontmatter,
+        [(await remarkMdxFrontmatter).remarkMdxFrontmatter, {name: 'matter'}],
         (await remarkGfm).default,
         (await remarkMath).default,
       ],
