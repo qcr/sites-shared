@@ -32,12 +32,18 @@ const mdx = Function('return import("@mdx-js/mdx")')() as Promise<
 const rehypeMathjax = Function('return import("rehype-mathjax")')() as Promise<
   typeof import('rehype-mathjax')
 >;
+const remarkFrontmatter = Function(
+  'return import("remark-frontmatter")'
+)() as Promise<typeof import('remark-frontmatter')>;
 const remarkGfm = Function('return import("remark-gfm")')() as Promise<
   typeof import('remark-gfm')
 >;
 const remarkMath = Function('return import("remark-math")')() as Promise<
   typeof import('remark-math')
 >;
+const remarkMdxFrontmatter = Function(
+  'return import("remark-mdx-frontmatter")'
+)() as Promise<typeof import('remark-mdx-frontmatter')>;
 
 async function asyncLoader(
   ctx: webpack.LoaderContext<any>,
@@ -51,7 +57,12 @@ async function asyncLoader(
   const compile = (await mdx).compile;
   try {
     const x = await compile(input, {
-      remarkPlugins: [(await remarkGfm).default, (await remarkMath).default],
+      remarkPlugins: [
+        (await remarkFrontmatter).default,
+        (await remarkMdxFrontmatter).remarkMdxFrontmatter,
+        (await remarkGfm).default,
+        (await remarkMath).default,
+      ],
       rehypePlugins: [(await rehypeMathjax).default],
     });
     cb(null, x.toString());
