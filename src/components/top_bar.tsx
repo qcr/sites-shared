@@ -9,7 +9,7 @@ import {qcr_mqs} from '../styles/components';
 import QutLogo from '../assets/QutLogoLight';
 
 interface TopBarProps {
-  burger: boolean;
+  burger?: boolean;
   burgerOnClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   selected?: number | false;
