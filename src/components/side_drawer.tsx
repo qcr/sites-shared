@@ -2,6 +2,8 @@ import {Drawer, ListItemText, styled, Toolbar} from '@mui/material';
 
 interface SideDrawerProps {
   children: React.ReactNode;
+  onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+  show: boolean;
 }
 
 const StyledDrawer = styled(Drawer)(({theme}) => ({
@@ -22,9 +24,13 @@ const StyledScroll = styled('div')({
   },
 });
 
-export default function SideDrawer({children}: SideDrawerProps) {
+export default function SideDrawer({
+  children,
+  onClose,
+  show = false,
+}: SideDrawerProps) {
   return (
-    <StyledDrawer variant="permanent">
+    <StyledDrawer variant="temporary" open={show} onClose={onClose}>
       <Toolbar />
       <StyledScroll>{children}</StyledScroll>
     </StyledDrawer>

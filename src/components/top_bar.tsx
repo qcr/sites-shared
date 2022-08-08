@@ -10,6 +10,7 @@ import QutLogo from '../assets/QutLogoLight';
 
 interface TopBarProps {
   burger: boolean;
+  burgerOnClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   selected?: number | false;
   title?: string;
@@ -96,6 +97,7 @@ StyledTitle.defaultProps = {variant: 'h6'};
 
 export default function TopBar({
   burger = false,
+  burgerOnClick,
   className,
   title,
   tabs,
@@ -106,7 +108,11 @@ export default function TopBar({
       <StyledBar className={className}>
         <StyledRow>
           {burger && (
-            <StyledDrawerButton color="inherit" size="large">
+            <StyledDrawerButton
+              color="inherit"
+              size="large"
+              onClick={burgerOnClick}
+            >
               <MenuItem />
             </StyledDrawerButton>
           )}
