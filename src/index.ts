@@ -6,6 +6,7 @@ export {default as QcrFavicon} from './components/qcr_favicon';
 export {default as QcrFeatureCard} from './components/feature_card';
 export {default as QcrFocusButton} from './components/focus_button';
 export {default as QcrResponsiveMedia} from './components/responsive_media';
+export {default as QcrDrawer} from './components/side_drawer';
 export {default as QcrSimpleDialog} from './components/simple_dialog';
 export {default as QcrTopBar} from './components/top_bar';
 

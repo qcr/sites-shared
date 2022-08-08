@@ -4,6 +4,7 @@ import {
   QcrBottomBar,
   QcrCardCarousel,
   QcrContentCard,
+  QcrDrawer,
   QcrFeatureCard,
   QcrFocusButton,
   QcrMissingContentBox,
@@ -58,6 +59,7 @@ export default function HomePage() {
   return (
     <QcrPage>
       <QcrTopBar burger title="Sample homepage" tabs={TABS} selected={0} />
+      <QcrDrawer />
       <QcrBody>
         <QcrText>
           <QcrTitle>QCR title</QcrTitle>
