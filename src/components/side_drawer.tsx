@@ -12,7 +12,6 @@ const StyledDrawer = styled(Drawer)(({theme}) => ({
 
 const StyledScroll = styled('div')({
   overflowY: 'scroll',
-  marginLeft: '12px',
   marginTop: '16px',
   maxWidth: '300px',
   scrollbarWidth: 'none',
