@@ -1,0 +1,38 @@
+import {Drawer, ListItemText, styled, Toolbar} from '@mui/material';
+
+interface SideDrawerProps {
+  children: React.ReactNode;
+  onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+  show: boolean;
+}
+
+const StyledDrawer = styled(Drawer)(({theme}) => ({
+  zIndex: theme.zIndex.appBar - 1,
+}));
+
+const StyledScroll = styled('div')({
+  overflowY: 'scroll',
+  marginLeft: '12px',
+  marginTop: '16px',
+  maxWidth: '300px',
+  scrollbarWidth: 'none',
+  msOverflowStyle: 'none',
+
+  '&::-webkit-scrollbar': {
+    height: 0,
+    width: 0,
+  },
+});
+
+export default function SideDrawer({
+  children,
+  onClose,
+  show = false,
+}: SideDrawerProps) {
+  return (
+    <StyledDrawer variant="temporary" open={show} onClose={onClose}>
+      <Toolbar />
+      <StyledScroll>{children}</StyledScroll>
+    </StyledDrawer>
+  );
+}

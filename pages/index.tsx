@@ -1,9 +1,10 @@
-import {styled} from '@mui/material';
+import {ListItemText, styled} from '@mui/material';
 import {
   QcrBody,
   QcrBottomBar,
   QcrCardCarousel,
   QcrContentCard,
+  QcrDrawer,
   QcrFeatureCard,
   QcrFocusButton,
   QcrMissingContentBox,
@@ -55,9 +56,23 @@ const StyledCards = styled('div')({
 
 export default function HomePage() {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   return (
     <QcrPage>
-      <QcrTopBar title="Sample homepage" tabs={TABS} selected={0} />
+      <QcrTopBar
+        burger
+        burgerOnClick={() => setDrawerOpen(!drawerOpen)}
+        title="Sample homepage"
+        tabs={TABS}
+        selected={0}
+      />
+      <QcrDrawer show={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        {Array.from(Array(50).keys()).map((s) => (
+          <ListItemText key={s} sx={{width: '1000px'}}>
+            {`List item number ${s}`}
+          </ListItemText>
+        ))}
+      </QcrDrawer>
       <QcrBody>
         <QcrText>
           <QcrTitle>QCR title</QcrTitle>
