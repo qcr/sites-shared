@@ -1,4 +1,4 @@
-import {styled} from '@mui/material';
+import {ListItemText, styled} from '@mui/material';
 import {
   QcrBody,
   QcrBottomBar,
@@ -59,7 +59,13 @@ export default function HomePage() {
   return (
     <QcrPage>
       <QcrTopBar burger title="Sample homepage" tabs={TABS} selected={0} />
-      <QcrDrawer />
+      <QcrDrawer>
+        {Array.from(Array(50).keys()).map((s) => (
+          <ListItemText key={s} sx={{width: '1000px'}}>
+            {`List item number ${s}`}
+          </ListItemText>
+        ))}
+      </QcrDrawer>
       <QcrBody>
         <QcrText>
           <QcrTitle>QCR title</QcrTitle>
