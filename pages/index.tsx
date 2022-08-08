@@ -57,7 +57,7 @@ export default function HomePage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   return (
     <QcrPage>
-      <QcrTopBar title="Sample homepage" tabs={TABS} selected={0} />
+      <QcrTopBar burger title="Sample homepage" tabs={TABS} selected={0} />
       <QcrBody>
         <QcrText>
           <QcrTitle>QCR title</QcrTitle>

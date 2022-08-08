@@ -45,6 +45,7 @@
     "@mdx-js/loader": "^2.1.0",
     "@mdx-js/mdx": "^2.1.0",
     "@mdx-js/react": "^2.1.0",
+    "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.4.4",
     "github-markdown-css": "^5.1.0",
     "gray-matter": "^4.0.3",
