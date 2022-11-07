@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 import {AppBar, Tab, Tabs, styled, Typography} from '@mui/material';
 
@@ -15,6 +15,7 @@ interface TopBarProps {
     text: string;
     target: string;
   }[];
+  logo?: ReactElement
 }
 
 const StyledBar = styled(AppBar)({
@@ -91,8 +92,10 @@ export default function TopBar({
   className,
   title,
   tabs,
+  logo,
   selected = false,
 }: TopBarProps) {
+  console.log(logo)
   return (
     <>
       <StyledBar className={className}>
@@ -104,6 +107,7 @@ export default function TopBar({
                 <StyledLogoTitle>Centre for{'\n'}Robotics</StyledLogoTitle>
               </a>
             </Link>
+            { logo }
             {title && (
               <>
                 <StyledDivider />

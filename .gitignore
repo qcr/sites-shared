@@ -9,3 +9,5 @@ node_modules
 /demo_assets/*.d.ts.map
 
 /.next/
+
+.vscode
