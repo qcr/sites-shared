@@ -105,7 +105,6 @@ export default function TopBar({
   logo,
   selected = false,
 }: TopBarProps) {
-  console.log(logo)
   return (
     <>
       <StyledBar className={className}>
