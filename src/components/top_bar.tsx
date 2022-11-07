@@ -1,13 +1,16 @@
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 
-import {AppBar, Tab, Tabs, styled, Typography} from '@mui/material';
+import MenuItem from '@mui/icons-material/Menu';
+import {AppBar, Tab, Tabs, styled, Typography, IconButton} from '@mui/material';
 
 import {qcr_mqs} from '../styles/components';
 
 import QutLogo from '../assets/QutLogoLight';
 
 interface TopBarProps {
+  burger?: boolean;
+  burgerOnClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   selected?: number | false;
   title?: string;
@@ -27,6 +30,11 @@ const StyledDivider = styled('div')(({theme}) => ({
   height: '40px',
   margin: '12px 36px',
 }));
+
+const StyledDrawerButton = styled(IconButton)({
+  position: 'absolute',
+  left: '12px',
+});
 
 const StyledHome = styled('div')({
   alignItems: 'center',
@@ -89,6 +97,8 @@ const StyledTitle = styled(Typography)(({theme}) => ({
 StyledTitle.defaultProps = {variant: 'h6'};
 
 export default function TopBar({
+  burger = false,
+  burgerOnClick,
   className,
   title,
   tabs,
@@ -100,6 +110,15 @@ export default function TopBar({
     <>
       <StyledBar className={className}>
         <StyledRow>
+          {burger && (
+            <StyledDrawerButton
+              color="inherit"
+              size="large"
+              onClick={burgerOnClick}
+            >
+              <MenuItem />
+            </StyledDrawerButton>
+          )}
           <StyledHome>
             <Link href="https://research.qut.edu.au/qcr">
               <a style={{display: 'flex', textDecoration: 'none'}}>

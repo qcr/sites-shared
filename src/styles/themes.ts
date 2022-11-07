@@ -2,7 +2,7 @@ import {createTheme} from '@mui/material/styles';
 
 export function qcrTheme() {
   return createTheme({
-    palette: {primary: {main: '#00407a'}},
+    palette: {mode: 'light', primary: {main: '#00407a'}},
     typography: {
       fontFamily:
         'Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
