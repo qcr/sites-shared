@@ -49,6 +49,16 @@ Make sure you have the latest LTS of NodeJs installed (see [guide below](#instal
 3. Add the QCR theme, CSS, and favicon to your `pages/_app.tsx` (see example in [./pages/\_app.tsx](./pages/_app.tsx))
 4. Start building your site by adding QCR components to `pages/index.tsx` (see example in [./pages/\_app.tsx](./pages/index.tsx))
 
+## Extending Sites-Shared
+
+If you have extended this package and wish to use the extensions in QCR sites perform the following:
+
+1. Add and commit your changes
+2. Add a git tag: `git tag v<x.x.x>`
+3. Push to origin with tags: `git push origin --tags`
+
+Remember then to update the downstream sites to use the new sites-shared tag.
+
 ## Installing NodeJs on Ubuntu
 
 1. Install directly from apt:
