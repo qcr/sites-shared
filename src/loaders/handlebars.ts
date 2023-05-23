@@ -98,6 +98,10 @@ async function asyncLoader(
   // }
   inst.registerHelper(definedHelpers);
 
+  // Load in helper functions from https://github.com/helpers/handlebars-helpers
+  var helpers = require('handlebars-helpers')();
+  inst.registerHelper(helpers);
+
   // Load the requested data
   const d = query.get('data') ? query.get('data') : opts.data;
   let data;

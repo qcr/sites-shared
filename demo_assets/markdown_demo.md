@@ -137,3 +137,20 @@ Will then turn into:
 {{ DemoRobotTable demo_robot }}
 
 Now we're back to the Markdown-like simplicity, but with significantly more expressitivity!
+
+## Testing Third Party Handlebar Helpers
+Access to all helpers defined [here](https://github.com/helpers/handlebars-helpers)
+
+Some Data: {{my_field.some_data}}
+
+If Equals Test
+
+{{#eq my_field.some_data "Test"}}
+- This should be displayed
+{{/eq}}
+
+{{#eq my_field.some_data "test"}}
+- This should NOT be displayed
+{{/eq}}
+
+
